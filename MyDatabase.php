@@ -62,9 +62,64 @@ class MyDatabase{
         }
     }
 
+    /**
+     * Function inserts row into the table
+     * @param string $tableName name of the table
+     * @param string $insertStatename statement of insert
+     * @param string $insertValues insert value
+     * @return bool insertion success
+     */
+    public function insertIntoTable(string $tableName, string $insertStatename, string $insertValues):bool {
+
+        $q = "INSERT INTO $tableName($insertStatename) VALUES ($insertValues)";
+
+        $obj = $this->executeQuery($q);
+        if($obj == null){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    /**
+     * Function update a row in table
+     * @param string $tableName name of the table
+     * @param string $updateStatementWithValues statement with values
+     * @param string $whereStatement where will the data updated
+     * @return bool was update successfully
+     */
+    public function updateInTable(string $tableName, string $updateStatementWithValues, string $whereStatement):bool {
+
+        $q = "UPDATE $tableName SET $updateStatementWithValues WHERE $whereStatement";
+
+        $obj = $this->executeQuery($q);
+
+        if($obj == null){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     function getAllUsers(){
-        $users = $this->selectFromTable("lrunt_uzivatel", "", "username");
+        $users = $this->selectFromTable("lrunt_uzivatel", "", "id_uzivatel");
         return $users;
+    }
+
+    function getAllRights(){
+        return $this->selectFromTable("lrunt_pravo", "", "id_pravo");
+    }
+
+    public function addNewUser(string $username, string $password, string $email, int $idPravo = 3){
+        $insertStatement = "username, heslo, email, id_pravo";
+        $insertValues = "'$username', '$password', '$email', '$idPravo'";
+        return $this->insertIntoTable("lrunt_uzivatel", $insertStatement, $insertValues);
+    }
+
+    public function updateUser(int $idUzivatel, string $username, string $password, string $email, int $idPravo){
+        $updateStatementWithValues = "login='$username', heslo='$password', email='$email', id_pravo='$idPravo'";
+        $whereStatement = "id_uzivatel=$idUzivatel";
+        return $this->updateInTable(TABLE_UZIVATEL, $updateStatementWithValues, $whereStatement);
     }
 }
 

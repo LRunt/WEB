@@ -16,6 +16,7 @@
     }
 
     $users = $db->getAllUsers();
+    $right = $db->getAllRights();
 
 ?>
 
