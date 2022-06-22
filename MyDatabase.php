@@ -152,6 +152,44 @@ class MyDatabase{
             return false;
         }
     }
+
+    /**
+     * Logout of user
+     */
+    public function userLogout(){
+        unset($_SESSION[$this->userSessionKey]);
+    }
+
+    /**
+     * Test if user is logged
+     *
+     * @return bool Is user logged?
+     */
+    public function isUserLogged(){
+        return isset($_SESSION[$this->userSessionKey]);
+    }
+
+    public function getLoggedUserData(){
+        if($this->isUserLogged()){
+            $userId = $_SESSION[$this->userSessionKey];
+            if($userId == null){
+                echo "SERVER ERROR: Data uživatele nebyla nalezena, a proto byl uživatel odhlášen";
+                $this->userLogout();
+                return null;
+            }else{
+                $userData = $this->selectFromTable("lrunt_uzivatel", "id_uzivatel=$userId");
+                if(empty($userData)){
+                    echo "ERROR: Data přihlášeného uživatele se nanachází v databázi.";
+                    $this->userLogout();
+                    return null;
+                }else{
+                    return $userData[0];
+                }
+            }
+        }else{
+            return null;
+        }
+    }
 }
 
 ?>
