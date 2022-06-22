@@ -9,17 +9,21 @@
             && !empty($_POST['email'])
             && $_POST['heslo'] == $_POST['heslo2']
         ){
-            // pozn.: heslo by melo byt sifrovano
-            // napr. password_hash($password, PASSWORD_BCRYPT) pro sifrovani
-            // a password_verify($password, $hash) pro kontrolu hesla.
+            if($db->userExist($_POST['username'])){
+                echo "Prezdivka zabrana!";
+            }else{
+                // pozn.: heslo by melo byt sifrovano
+                // napr. password_hash($password, PASSWORD_BCRYPT) pro sifrovani
+                // a password_verify($password, $hash) pro kontrolu hesla.
 
-            // mam vsechny atributy - ulozim uzivatele do DB
-            $res = $db->addNewUser($_POST['username'], $_POST['heslo'], $_POST['email']);
-            // byl ulozen?
-            if($res){
-                echo "OK: Uživatel byl přidán do databáze.";
-            } else {
-                echo "ERROR: Uložení uživatele se nezdařilo.";
+                // mam vsechny atributy - ulozim uzivatele do DB
+                $res = $db->addNewUser($_POST['username'], $_POST['heslo'], $_POST['email']);
+                // byl ulozen?
+                if($res){
+                    echo "OK: Uživatel byl přidán do databáze.";
+                } else {
+                    echo "ERROR: Uložení uživatele se nezdařilo.";
+                }
             }
         } else {
             // nemam vsechny atributy

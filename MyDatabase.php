@@ -5,11 +5,19 @@
  */
 class MyDatabase{
 
+
     private $pdo;
+    /** @var string $mySession owns object for administration session*/
+    private $mySession;
+    /** @var string $userSessionKey is key fo user data, which is saved in the session*/
+    private $userSessionKey = "curret_user_id";
 
     public function __construct(){
         $this->pdo = new PDO("mysql:host=localhost;dbname=sp_kiv_web", "root", "");
         $this->pdo->exec("set names utf8");
+
+        require_once("MySession.php");
+        $this->mySession = new MySession();
     }
 
     /**
@@ -120,6 +128,29 @@ class MyDatabase{
         $updateStatementWithValues = "login='$username', heslo='$password', email='$email', id_pravo='$idPravo'";
         $whereStatement = "id_uzivatel=$idUzivatel";
         return $this->updateInTable(TABLE_UZIVATEL, $updateStatementWithValues, $whereStatement);
+    }
+
+    public function userExist(string $username){
+        $where = "username='$username'";
+        $user = $this->selectFromTable("lrunt_uzivatel", $where);
+
+        if(count($user)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function userLogin(string $username, string $password){
+        $where = "username='$username' AND heslo='$password'";
+        $user = $this->selectFromTable("lrunt_uzivatel", $where);
+
+        if(count($user)){
+            $_SESSION[$this->userSessionKey] = $user[0]["id_uzivatel"];
+            return true;
+        } else{
+            return false;
+        }
     }
 }
 
