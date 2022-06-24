@@ -4,7 +4,7 @@ class MySession
 {
 
     /**
-     *
+     * Constructor of session
      */
     public function __construct(){
         session_start();
