@@ -19,7 +19,10 @@ class IntroductionController implements IController{
 
         $tplData['title'] = $pageTitle;
 
-        $tplData['rights'] = $this->db->getAllRights();
+        $tplData['isLogged'] = $this->db->isUserLogged();
+        if($tplData['isLogged']){
+            $tplData['user'] = $this->db->getLoggedUserData();
+        }
 
         ob_start();
 

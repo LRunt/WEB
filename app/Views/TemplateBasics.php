@@ -10,6 +10,9 @@ class TemplateBasics{
      * @param string $pageTitle name of the page
      */
     public function getHTMLHeader(string $pageTitle){
+
+        global $tplData;
+
         ?>
 
     <!DOCTYPE html>
@@ -32,18 +35,12 @@ class TemplateBasics{
                     <img class="bi me-2" width="40" height="32" role="img" aria-label="Restaurace" src="data/logo.png">
                 </a>
 
-                <!--<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="IntroductionTemplate.php" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="UserManagementTemplate.php" class="nav-link px-2 text-white">User management</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-                </ul>-->
-
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <?php
                             foreach(WEB_PAGES as $key => $pInfo){
-                                echo "<li><a class='nav-link px-2 text-white' href='index.php?page=$key'>$pInfo[title]</a></li>";
+                                if($key!='login' && $key!='register'){
+                                    echo "<li><a class='nav-link px-2 text-white' href='index.php?page=$key'>$pInfo[title]</a></li>";
+                                }
                             }
                         ?>
                     </ul>
@@ -52,10 +49,20 @@ class TemplateBasics{
                     <input type="search" class="form-control form-control-dark text-white bg-dark" placeholder="Search..." aria-label="Search">
                 </form>
 
+                <?php if(!$tplData['isLogged']){
+                ?>
                 <div class="text-end">
-                    <a type="button" class="btn btn-outline-light me-2" href="../Models/user-login.inc.php">Login</a>
-                    <a type="button" class="btn btn-warning" href="../Models/user-registration.inc.php">Sign-up</a>
+                    <a type="button" class="btn btn-outline-light me-2" href="index.php?page=login">Login</a>
+                    <a type="button" class="btn btn-warning" href="index.php?page=register">Sign-up</a>
                 </div>
+                <?php
+                }else{
+                ?>
+                <div class="text-end">
+                    <a type="button" class="btn btn-outline-light me-2" href="index.php?page=login"><?php echo $tplData['user']['username']?></a>
+                    <a type="button" class="btn btn-outline-light me-2" name='action' value='logout' href="index.php?page=index">Odhlásit</a>
+                </div>
+                <?php } ?>
             </div>
         </div>
     </header>
@@ -104,7 +111,7 @@ class TemplateBasics{
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                             <!-- Content -->
                             <h6 class="text-uppercase fw-bold mb-4">
-                                <i class="fas fa-house me-3"></i>Restaurace U Rybníčka
+                                <i class="fas fa-utensils me-3"></i>Restaurace U Rybníčka
                             </h6>
                             <p>
                                 Ubytování, Volnočasové aktivity, Svatby a oslavy.
@@ -116,19 +123,19 @@ class TemplateBasics{
                         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                             <!-- Links -->
                             <h6 class="text-uppercase fw-bold mb-4">
-                                Products
+                                Disponujeme
                             </h6>
                             <p>
-                                <a href="#!" class="text-reset">Angular</a>
+                                Velký Sál
                             </p>
                             <p>
-                                <a href="#!" class="text-reset">React</a>
+                                Bowling
                             </p>
                             <p>
-                                <a href="#!" class="text-reset">Vue</a>
+                                Konferenční salónek
                             </p>
                             <p>
-                                <a href="#!" class="text-reset">Laravel</a>
+                                Restaurace
                             </p>
                         </div>
                         <!-- Grid column -->
@@ -137,19 +144,19 @@ class TemplateBasics{
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                             <!-- Links -->
                             <h6 class="text-uppercase fw-bold mb-4">
-                                Useful links
+                                Navštivte také
                             </h6>
                             <p>
-                                <a href="#!" class="text-reset">Pricing</a>
+                                <a href="https://www.obecbrezno.cz/" class="text-reset">Obec Březno</a>
                             </p>
                             <p>
-                                <a href="#!" class="text-reset">Settings</a>
+                                <a href="https://www.sd-infocentrum.cz/pribeh/brezensky-drak/o-drakovi.aspx" class="text-reset">Drak Severus</a>
                             </p>
                             <p>
-                                <a href="#!" class="text-reset">Orders</a>
+                                <a href="https://restauraceurybnicka.webnode.cz/ubytovani/" class="text-reset">Restaurace</a>
                             </p>
                             <p>
-                                <a href="#!" class="text-reset">Help</a>
+                                <a href="https://www.kulturnidumbrezno.cz/" class="text-reset">Kulturní dům</a>
                             </p>
                         </div>
                         <!-- Grid column -->
@@ -184,7 +191,6 @@ class TemplateBasics{
         <?php
 
     }
-
 }
 
 ?>

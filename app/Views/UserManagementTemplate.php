@@ -1,21 +1,5 @@
 <?php
 
-/*    $tplData['title'] = "Správa uživatelů";
-    $tplData['users'] = [array("id_introduction" => 1, "date" => "2016-11-01 10:53:00", "author" => "A.B.", "title" => "Nadpis", "text" => "abcd")];
-    $tplData['delete'] = "Úspěšné mazání";
-    define("DIRECTORY_VIEWS", "../Views");
-    define("DIRECTORY_MODELS", "../Models");
-    const WEB_PAGES = array("uvod" => array("title" => "Správa uživatelů"));
-
-    require_once(DIRECTORY_VIEWS."/TemplateBasics.php");
-    $tplHeaders = new TemplateBasics();
-
-    require_once(DIRECTORY_MODELS."/MyDatabase.php");
-    $db = new MyDatabase();
-    $users = $db->getAllUsers();
-    $right = $db->getAllRights();
-*/
-
     global $tplData;
 
     require_once(DIRECTORY_VIEWS."/TemplateBasics.php");

@@ -18,6 +18,11 @@ class UserManagementController implements IController {
 
         $tplData['title'] = $pageTitle;
 
+        $tplData['isLogged'] = $this->db->isUserLogged();
+        if($tplData['isLogged']){
+            $tplData['user'] = $this->db->getLoggedUserData();
+        }
+
         if(isset($_POST['action']) and $_POST['action'] == "delete"
             and isset($_POST['id_user'])
         ){

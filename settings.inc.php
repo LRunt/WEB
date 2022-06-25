@@ -38,6 +38,18 @@
             "file_name" => "UserManagementController.php",
             "class_name" => "UserManagementController",
         ),
+        "login" => array(
+            "title" => "Přihlášení",
+
+            "file_name" => "LoginController.php",
+            "class_name" => "LoginController",
+        ),
+        "register" => array(
+            "title" => "Registrace",
+
+            "file_name" => "RegisterController.php",
+            "class_name" => "RegisterController",
+        ),
     );
 
 ?>
