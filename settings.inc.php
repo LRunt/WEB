@@ -15,6 +15,29 @@
 
 
     //all websites of web
+    /** Adresar kontroleru. */
+    const DIRECTORY_CONTROLLERS = "app\Controllers";
+    /** Adresar modelu. */
+    const DIRECTORY_MODELS = "app\Models";
+    /** Adresar sablon */
+    const DIRECTORY_VIEWS = "app\Views";
 
+    /** Klic defaultni webove stranky. */
+    const DEFAULT_WEB_PAGE_KEY = "uvod";
+
+    const WEB_PAGES = array(
+        "uvod" => array(
+            "title" => "Úvodní stránka",
+
+            "file_name" => "IntroductionController.php",
+            "class_name" => "IntroductionController",
+        ),
+        "sprava" => array(
+            "title" => "Správa uživatelů",
+
+            "file_name" => "UserManagementController.php",
+            "class_name" => "UserManagementController",
+        ),
+    );
 
 ?>

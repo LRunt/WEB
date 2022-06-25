@@ -21,36 +21,48 @@ class TemplateBasics{
         <meta name="author" content="Lukas Runt">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-        <title>Restaurace U Rybníčka</title>
+        <title><?php echo $pageTitle;?></title>
 
     </head>
     <body>
     <header class="p-3 bg-dark text-white">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+                <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <img class="bi me-2" width="40" height="32" role="img" aria-label="Restaurace" src="data/logo.png">
                 </a>
 
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+                <!--<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="IntroductionTemplate.php" class="nav-link px-2 text-secondary">Home</a></li>
+                    <li><a href="UserManagementTemplate.php" class="nav-link px-2 text-white">User management</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-                </ul>
+                </ul>-->
+
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <?php
+                            foreach(WEB_PAGES as $key => $pInfo){
+                                echo "<li><a class='nav-link px-2 text-white' href='index.php?page=$key'>$pInfo[title]</a></li>";
+                            }
+                        ?>
+                    </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                     <input type="search" class="form-control form-control-dark text-white bg-dark" placeholder="Search..." aria-label="Search">
                 </form>
 
                 <div class="text-end">
-                    <a type="button" class="btn btn-outline-light me-2" href="user-login.inc.php">Login</a>
-                    <a type="button" class="btn btn-warning" href="user-registration.inc.php">Sign-up</a>
+                    <a type="button" class="btn btn-outline-light me-2" href="../Models/user-login.inc.php">Login</a>
+                    <a type="button" class="btn btn-warning" href="../Models/user-registration.inc.php">Sign-up</a>
                 </div>
             </div>
         </div>
     </header>
+
+     <main style="margin: 50px">
+        <!-- START THE FEATURETTES -->
+        <div class="container marketing">
 
     <?php
     }
@@ -60,6 +72,8 @@ class TemplateBasics{
      */
     public function getHTMLFooter(){
         ?>
+            </div>
+        </main>
         <br>
         <!-- Footer -->
         <footer class="text-center text-lg-start bg-light text-muted">
@@ -90,11 +104,10 @@ class TemplateBasics{
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                             <!-- Content -->
                             <h6 class="text-uppercase fw-bold mb-4">
-                                <i class="fas fa-gem me-3"></i>Company name
+                                <i class="fas fa-house me-3"></i>Restaurace U Rybníčka
                             </h6>
                             <p>
-                                Here you can use rows and columns to organize your footer content. Lorem ipsum
-                                dolor sit amet, consectetur adipisicing elit.
+                                Ubytování, Volnočasové aktivity, Svatby a oslavy.
                             </p>
                         </div>
                         <!-- Grid column -->
