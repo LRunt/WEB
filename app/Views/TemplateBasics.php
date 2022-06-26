@@ -60,7 +60,10 @@ class TemplateBasics{
                 ?>
                 <div class="text-end">
                     <a type="button" class="btn btn-outline-light me-2" href="index.php?page=login"><?php echo $tplData['user']['username']?></a>
-                    <a type="button" class="btn btn-outline-light me-2" name='action' value='logout' href="index.php?page=index">Odhlásit</a>
+                    <form action='' method='POST'>
+                        <input type='hidden' name='action' value='logout'>
+                        <input type='submit' name='potvrzeni' value='Odhlásit'>
+                    </form>
                 </div>
                 <?php } ?>
             </div>

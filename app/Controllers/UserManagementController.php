@@ -29,14 +29,28 @@ class UserManagementController implements IController {
             // provedu smazani uzivatele
             $ok = $this->db->deleteUser(intval($_POST['id_user']));
             if($ok){
-                $tplData['delete'] = "OK: Uživatel s ID:$_POST[id_user] byl smazán z databáze.";
+                $tplData['success'] = "OK";
+                $tplData['delete'] = "Uživatel s ID:$_POST[id_user] byl smazán z databáze.";
             } else {
-                $tplData['delete'] = "CHYBA: Uživatele s ID:$_POST[id_user] se nepodařilo smazat z databáze.";
+                $tplData['success'] = "ERROR";
+                $tplData['delete'] = "Uživatele s ID:$_POST[id_user] se nepodařilo smazat z databáze.";
+            }
+        }else if(isset($_POST['pravo'])){
+            $user = $this->db->getUser($_POST['id_user']);
+            //var_dump($user);
+            $update = $this->db->updateUser($_POST["id_user"],$user[0]["username"], $user[0]["heslo"], $user[0]["email"], $_POST["pravo"]);
+            if($update){
+                $tplData['success'] = "OK";
+                $tplData['delete'] = "Uživateli s ID:$_POST[id_user] se podařilo změnit právo.";
+            }else{
+                $tplData['success'] = "ERROR";
+                $tplData['delete'] = "Uživateli s ID:$_POST[id_user] se nepodařilo změnit právo.";
             }
         }
 
         //// nactu aktulani data uzivatelu
         $tplData['users'] = $this->db->getAllUsers();
+        $tplData['rights'] = $this->db->getAllRights();
 
         ob_start();
 

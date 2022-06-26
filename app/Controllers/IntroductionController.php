@@ -24,6 +24,13 @@ class IntroductionController implements IController{
             $tplData['user'] = $this->db->getLoggedUserData();
         }
 
+        if(isset($_POST['action'])){
+            if($_POST['action'] == 'logout'){
+                $this->db->userLogout();
+                echo "OK: Uživatel byl odhlášen.";
+            }
+        }
+
         ob_start();
 
         require_once(DIRECTORY_VIEWS ."/IntroductionTemplate.php");

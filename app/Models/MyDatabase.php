@@ -125,10 +125,22 @@ class MyDatabase{
     }
 
     public function updateUser(int $idUzivatel, string $username, string $password, string $email, int $idPravo){
-        $updateStatementWithValues = "login='$username', heslo='$password', email='$email', id_pravo='$idPravo'";
+        $updateStatementWithValues = "username='$username', heslo='$password', email='$email', id_pravo='$idPravo'";
         $whereStatement = "id_uzivatel=$idUzivatel";
         return $this->updateInTable(TABLE_UZIVATEL, $updateStatementWithValues, $whereStatement);
     }
+
+    public function getUser(int $idUzivatel){
+        $where = "id_uzivatel='$idUzivatel'";
+        return $this->selectFromTable("lrunt_uzivatel", $where);;
+    }
+
+    public function deleteUser(int $userId){
+        $whereStatement =  "id_uzivatel = $userId";
+
+        return $this->deleteFromTable("lrunt_uzivatel", $whereStatement);
+    }
+
 
     public function userExist(string $username){
         $where = "username='$username'";
