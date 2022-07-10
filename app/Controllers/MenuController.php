@@ -19,8 +19,18 @@ class MenuController implements IController{
         $tplData['title'] = $pageTitle;
 
         $tplData['isLogged'] = $this->db->isUserLogged();
-        if($tplData['isLogged']){
+        if($tplData['isLogged']) {
             $tplData['user'] = $this->db->getLoggedUserData();
+        }
+
+        if(isset($_POST['action'])){
+            if($_POST['action'] == 'logout'){
+                $this->db->userLogout();
+                header("Refresh:0");
+                #echo "OK: Uživatel byl odhlášen.";
+            }else{
+                #echo "WARNING: neznámá akce";
+            }
         }
 
         $tplData['food'] = $this->db->getAllProducts();

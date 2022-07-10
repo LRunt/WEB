@@ -27,7 +27,10 @@ class IntroductionController implements IController{
         if(isset($_POST['action'])){
             if($_POST['action'] == 'logout'){
                 $this->db->userLogout();
-                echo "OK: Uživatel byl odhlášen.";
+                header("Refresh:0");
+                #echo "OK: Uživatel byl odhlášen.";
+            }else{
+                #echo "WARNING: neznámá akce";
             }
         }
 

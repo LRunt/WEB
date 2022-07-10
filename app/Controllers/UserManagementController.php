@@ -48,6 +48,16 @@ class UserManagementController implements IController {
             }
         }
 
+        if(isset($_POST['action'])){
+            if($_POST['action'] == 'logout'){
+                $this->db->userLogout();
+                header("Refresh:0");
+                #echo "OK: Uživatel byl odhlášen.";
+            }else{
+                #echo "WARNING: neznámá akce";
+            }
+        }
+
         //// nactu aktulani data uzivatelu
         $tplData['users'] = $this->db->getAllUsers();
         $tplData['rights'] = $this->db->getAllRights();
