@@ -118,6 +118,10 @@ class MyDatabase{
         return $this->selectFromTable("lrunt_pravo", "", "id_pravo");
     }
 
+    function getAllProducts(){
+        return $this->selectFromTable("lrunt_produkt", "", "id_produkt");
+    }
+
     public function addNewUser(string $username, string $password, string $email, int $idPravo = 3){
         $insertStatement = "username, heslo, email, id_pravo";
         $insertValues = "'$username', '$password', '$email', '$idPravo'";

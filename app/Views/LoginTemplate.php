@@ -63,9 +63,11 @@
         <a href='user-registration.inc.php'>Nemám účet</a>
     </form>";*/
     }else{
+        $user = $tplData['user'];
         $res .= "
                  <h2>Přihlášený uživatel</h2>
-        Odhlášení uživatele:
+        Přezdívka: $user[username]<br>
+        Email: $user[email]
         <form action='' method='POST'>
             <input type='hidden' name='action' value='logout'>
             <input type='submit' name='potvrzeni' value='Odhlásit'>

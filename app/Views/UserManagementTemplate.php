@@ -39,7 +39,7 @@
                     <th>Právo</th>
                     <th>Smazání</th>
                     </tr>
-                </thead>";
+                </thead><tbody>";
 
             //<table border='1'><tr><th>ID</th><th>Username</th><th>E-mail</th><th>Právo</th><th>Smazat</th></tr>";
                 // projdu data a vypisu radky tabulky
@@ -50,7 +50,7 @@
                                             ."<button type='submit' name='action' value='delete'>Smazat</button>"
                                             ."</form></td></tr>";
                                 }*/
-     $res .= "<tbody>
+     $res .= "
             <tr>
             <th scope='row'>$u[id_uzivatel]</th>
             <td>$u[username]</td>

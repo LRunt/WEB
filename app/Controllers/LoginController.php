@@ -15,6 +15,7 @@ class LoginController implements IController {
         $tplData = [];
 
         $tplData['title'] = $pageTitle;
+        $tplData['user'] = [];
 
         if(isset($_POST['action'])){
             if($_POST['action'] == 'login' && isset($_POST['username']) && isset($_POST['heslo'])){
@@ -35,7 +36,7 @@ class LoginController implements IController {
         }
 
         $tplData['isLogged'] = $this->db->isUserLogged();
-        if($tplData['isLogged']){
+        if($tplData['isLogged']) {
             $tplData['user'] = $this->db->getLoggedUserData();
         }
 

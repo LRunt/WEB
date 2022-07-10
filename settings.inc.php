@@ -50,6 +50,12 @@
             "file_name" => "RegisterController.php",
             "class_name" => "RegisterController",
         ),
+        "menu" => array(
+          "title" => "Menu",
+
+          "file_name" => "MenuController.php",
+          "class_name" => "MenuController",
+        ),
     );
 
 ?>
