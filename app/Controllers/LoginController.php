@@ -38,6 +38,8 @@ class LoginController implements IController {
         $tplData['isLogged'] = $this->db->isUserLogged();
         if($tplData['isLogged']) {
             $tplData['user'] = $this->db->getLoggedUserData();
+            $user = $tplData['user'];
+            $tplData['reviews'] = $this->db->getUserReviews($user['id_uzivatel']);
         }
 
         ob_start();

@@ -122,6 +122,10 @@ class MyDatabase{
         return $this->selectFromTable("lrunt_produkt", "", "id_produkt");
     }
 
+    function getUserReviews(int $idUzivatel){
+        return $this->selectFromTable("lrunt_recenze", "'$idUzivatel'=id_uzivatel", "id_recenze");
+    }
+
     public function addNewUser(string $username, string $password, string $email, int $idPravo = 3){
         $insertStatement = "username, heslo, email, id_pravo";
         $insertValues = "'$username', '$password', '$email', '$idPravo'";

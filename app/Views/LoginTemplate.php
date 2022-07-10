@@ -67,15 +67,25 @@
         $res .= "
                  <h2>Přihlášený uživatel</h2>
         Přezdívka: $user[username]<br>
-        Email: $user[email]
+        Email: $user[email]<br>
         <form action='' method='POST'>
             <input type='hidden' name='action' value='logout'>
             <input type='submit' name='potvrzeni' value='Odhlásit'>
         </form>
         ";
+        if(count($tplData['reviews']) == 0){
+            $res .= "Zatím jste nezveřejnili žádnou recenzi.";
+        }else{
+            $i = 1;
+            foreach ($tplData['reviews'] as $r){
+                $res .= "Rezenze $i<br>
+                         Hodnoceni: $r[pocet_hvezd]<br>
+                         Popis: $r[popis]";
+                $i++;
+            }
+
+        }
     }
-    $res .= " 
-            ";
 
     echo $res;
 
