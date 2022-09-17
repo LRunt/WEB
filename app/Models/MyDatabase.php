@@ -9,7 +9,7 @@ class MyDatabase{
     private $pdo;
     /** @var string $mySession owns object for administration session*/
     private $mySession;
-    /** @var string $userSessionKey is key fo user data, which is saved in the session*/
+    /** @var string $userSessionKey is key for user data, which is saved in the session*/
     private $userSessionKey = "curret_user_id";
 
     public function __construct(){
@@ -209,6 +209,11 @@ class MyDatabase{
         }else{
             return null;
         }
+    }
+
+    public function getWeightOfRight(string $idRight){
+        $rightData = $this->selectFromTable("lrunt_pravo", "id_pravo=$idRight");
+        return $rightData['0']['vaha'];
     }
 }
 

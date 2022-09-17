@@ -31,30 +31,35 @@
 
             "file_name" => "IntroductionController.php",
             "class_name" => "IntroductionController",
+            "right_weight" => "0"
         ),
         "sprava" => array(
             "title" => "Správa uživatelů",
 
             "file_name" => "UserManagementController.php",
             "class_name" => "UserManagementController",
+            "right_weight" => "15"
         ),
         "login" => array(
             "title" => "Přihlášení",
 
             "file_name" => "LoginController.php",
             "class_name" => "LoginController",
+            "right_weight" => "0"
         ),
         "register" => array(
             "title" => "Registrace",
 
             "file_name" => "RegisterController.php",
             "class_name" => "RegisterController",
+            "right_weight" => "0"
         ),
         "menu" => array(
           "title" => "Menu",
 
           "file_name" => "MenuController.php",
           "class_name" => "MenuController",
+          "right_weight" => "10"
         ),
     );
 

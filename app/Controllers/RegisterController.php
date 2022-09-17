@@ -20,6 +20,7 @@ class RegisterController implements IController {
         $tplData['isLogged'] = $this->db->isUserLogged();
         if($tplData['isLogged']){
             $tplData['user'] = $this->db->getLoggedUserData();
+            $tplData['weight'] = $this->db->getWeightOfRight($tplData['user']['id_pravo']);
         }
 
         if(!empty($_POST['username']) && !empty($_POST['heslo']) && !empty($_POST['heslo2'])

@@ -22,6 +22,7 @@ class IntroductionController implements IController{
         $tplData['isLogged'] = $this->db->isUserLogged();
         if($tplData['isLogged']){
             $tplData['user'] = $this->db->getLoggedUserData();
+            $tplData['weight'] = $this->db->getWeightOfRight($tplData['user']['id_pravo']);
         }
 
         if(isset($_POST['action'])){

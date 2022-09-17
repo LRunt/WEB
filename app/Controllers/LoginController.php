@@ -40,6 +40,7 @@ class LoginController implements IController {
             $tplData['user'] = $this->db->getLoggedUserData();
             $user = $tplData['user'];
             $tplData['reviews'] = $this->db->getUserReviews($user['id_uzivatel']);
+            $tplData['weight'] = $this->db->getWeightOfRight($tplData['user']['id_pravo']);
         }
 
         ob_start();

@@ -39,7 +39,13 @@ class TemplateBasics{
                         <?php
                             foreach(WEB_PAGES as $key => $pInfo){
                                 if($key!='login' && $key!='register'){
-                                    echo "<li><a class='nav-link px-2 text-white' href='index.php?page=$key'>$pInfo[title]</a></li>";
+                                    $weight_of_rights = 0;
+                                    if($tplData['isLogged']){
+                                        $weight_of_rights = $tplData['weight'];
+                                    }
+                                    if($weight_of_rights >= $pInfo['right_weight']){
+                                        echo "<li><a class='nav-link px-2 text-white' href='index.php?page=$key'>$pInfo[title]</a></li>";
+                                    }
                                 }
                             }
                         ?>
