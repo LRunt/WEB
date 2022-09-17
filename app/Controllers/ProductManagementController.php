@@ -24,6 +24,16 @@
                 $tplData['weight'] = $this->db->getWeightOfRight($tplData['user']['id_pravo']);
             }
 
+            if(isset($_POST['action'])){
+                if($_POST['action'] == 'logout'){
+                    $this->db->userLogout();
+                    header("Refresh:0");
+                    #echo "OK: Uživatel byl odhlášen.";
+                }else{
+                    #echo "WARNING: neznámá akce";
+                }
+            }
+
             $tplData['products'] = $this->db->getAllProducts();
 
             ob_start();

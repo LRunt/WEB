@@ -2,7 +2,7 @@
 
 require_once(DIRECTORY_CONTROLLERS."/IController.php");
 
-class MenuController implements IController{
+class NewProductController implements IController{
 
     private $db;
 
@@ -38,7 +38,7 @@ class MenuController implements IController{
 
         ob_start();
 
-        require_once(DIRECTORY_VIEWS ."/MenuTemplate.php");
+        require_once(DIRECTORY_VIEWS ."/NewProductTemplate.php");
 
         $obsah = ob_get_clean();
 

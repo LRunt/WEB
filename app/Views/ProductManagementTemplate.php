@@ -14,7 +14,12 @@
     if($tplData['isLogged']){
         if($tplData['weight'] > WEB_PAGES['sprava']['right_weight']){
             $res .= "<h1>Seznam produktů</h1>
-                        <button>Nový produkt</button>
+                        <div class='row'>
+                            <div class='col-md-12 my-2'>
+                                <button class='btn btn-primary float-end'>Nový produkt</button>
+                            </div>
+                        </div>
+                       
                         <div class='table-responsive'>
                         <table class='table align-middle mb-0 bg-white'>
                             <thead class='bg-light'>
@@ -22,7 +27,8 @@
                             <th>Pokrm</th>
                             <th>Cena</th>
                             <th>Množství</th>
-                            <th>Akce</th>   
+                            <th>Uprav</th> 
+                            <th>Smaž</th>  
                             </tr>
                         </thead><tbody>";
             foreach ($tplData['products'] as $product){
@@ -30,7 +36,8 @@
                     <th scope='row'>$product[nazev]</th>
                     <td>$product[cena] Kč</td>
                     <td>$product[mnozstvi]</td>
-                    <td><button>Uprav</button></td></tr>";
+                    <td><button>Uprav</button></td>
+                    <td><button>Smaž</button></td></tr>";
             }
             $res .= "</tbody>
                     </table>
