@@ -24,6 +24,8 @@
                 $tplData['weight'] = $this->db->getWeightOfRight($tplData['user']['id_pravo']);
             }
 
+            $tplData['products'] = $this->db->getAllProducts();
+
             ob_start();
 
             require_once(DIRECTORY_VIEWS."/ProductManagementTemplate.php");
