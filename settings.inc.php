@@ -59,8 +59,15 @@
 
           "file_name" => "MenuController.php",
           "class_name" => "MenuController",
-          "right_weight" => "10"
+          "right_weight" => "0"
         ),
+        "productManagement" => array(
+            "title" => "Správa produktů",
+
+            "file_name" => "ProductManagementController.php",
+            "class_name" => "ProductManagementController",
+            "right_weight" => "10"
+        )
     );
 
 ?>

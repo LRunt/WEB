@@ -211,8 +211,16 @@ class MyDatabase{
         }
     }
 
+    /**
+     * Function gets a weight of user rights
+     * @param string $idRight rights id
+     * @return int|mixed weight of rights
+     */
     public function getWeightOfRight(string $idRight){
         $rightData = $this->selectFromTable("lrunt_pravo", "id_pravo=$idRight");
+        if($rightData == null){
+            return 0;
+        }
         return $rightData['0']['vaha'];
     }
 }
