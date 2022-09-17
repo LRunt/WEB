@@ -38,6 +38,8 @@ class RegisterController implements IController {
                 // byl ulozen?
                 if($res){
                     #echo "OK: Uživatel byl přidán do databáze.";
+                    $res = $this->db->userLogin($_POST['username'], $_POST['heslo']);
+                    header('Location: http://localhost/WEB/index.php?page=login');
                 } else {
                     #echo "ERROR: Uložení uživatele se nezdařilo.";
                 }
