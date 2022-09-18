@@ -16,7 +16,10 @@
             $res .= "<h1>Seznam produktů</h1>
                         <div class='row'>
                             <div class='col-md-12 my-2'>
-                                <button class='btn btn-primary float-end'>Nový produkt</button>
+                                <form method='post'>
+                                    <input type='hidden' name='newProduct' value=''>
+                                    <button type='submit' class='btn btn-primary float-end' name='action' value='newProduct'>Nový produkt</button>
+                                </form>
                             </div>
                         </div>
                        

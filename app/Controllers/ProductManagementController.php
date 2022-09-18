@@ -29,8 +29,8 @@
                     $this->db->userLogout();
                     header("Refresh:0");
                     #echo "OK: Uživatel byl odhlášen.";
-                }else{
-                    #echo "WARNING: neznámá akce";
+                }else if($_POST['action'] == 'newProduct'){
+                    header("Location: http://localhost/WEB/index.php?page=newProduct");
                 }
             }
 
