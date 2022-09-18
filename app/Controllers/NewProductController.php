@@ -22,6 +22,7 @@ class NewProductController implements IController{
         if($tplData['isLogged']) {
             $tplData['user'] = $this->db->getLoggedUserData();
             $tplData['weight'] = $this->db->getWeightOfRight($tplData['user']['id_pravo']);
+            $tplData['typesOfProducts'] = $this->db->getAllTypesOfProducts();
         }
 
         if(isset($_POST['action'])){

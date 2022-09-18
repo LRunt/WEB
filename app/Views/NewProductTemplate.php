@@ -24,14 +24,19 @@
                             <input type='file' id='photo' class='form-control' name='photo' accept='image/png, image/gif, image/jpeg' value='' required>   
                         
                             <label class='form-label' for='price'>Cena</label>
-                            <input class='form-control' id='price' type='number' name='price' required>
+                            <input class='form-control' id='price' type='number' name='price' min='0' required>
                             
                             <label class='form-label' for='quantity'>Množství</label>
                             <input class='form-control' id='quantity' type='text' name='quantity' required>
                             
                             <label class='form-label' for='type'>Typ</label>
-                            <input class='form-control mb-5' id='type' type='' name='type' required>
+                            <select name='type' id='type' class='form-control' required>";
+                                foreach ($tplData['typesOfProducts'] as $type){
+                                    $res .= "<option value=$type[id_typ]>$type[nazev]</option>";
+                                }
+            $res .=        "</select>
                             
+                            <br>
                             <div class='d-flex justify-content-start'>
                                 <input type='submit' name='submit' value='Uložit' class='btn btn-primary btn-lg'>
                             </div>   
