@@ -36,6 +36,15 @@ class NewProductController implements IController{
 
         $tplData['product'] = $this->db->getAllProducts();
 
+        if(isset($_POST['name'])){
+            /*$filename = $_FILES["photo"]["name"];
+            $tempname = $_FILES["photo"]["tmp_name"];*/
+
+            $res = $this->db->addNewProduct($_POST['name'], $_POST['photo'], $_POST['price'], $_POST['quantity']);
+            echo "add";
+
+        }
+
         ob_start();
 
         require_once(DIRECTORY_VIEWS ."/NewProductTemplate.php");

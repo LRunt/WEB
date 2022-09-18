@@ -132,6 +132,12 @@ class MyDatabase{
         return $this->insertIntoTable("lrunt_uzivatel", $insertStatement, $insertValues);
     }
 
+    public function addNewProduct(string $name, $photo, int $price, string $quantity){
+        $insertStatement = "nazev, foto, cena, mnozstvi";
+        $insertValues = "'$name', '$photo', '$price', '$quantity'";
+        return $this->insertIntoTable("lrunt_produkt", $insertStatement, $insertValues);
+    }
+
     public function updateUser(int $idUzivatel, string $username, string $password, string $email, int $idPravo){
         $updateStatementWithValues = "username='$username', heslo='$password', email='$email', id_pravo='$idPravo'";
         $whereStatement = "id_uzivatel=$idUzivatel";
@@ -149,6 +155,11 @@ class MyDatabase{
         return $this->deleteFromTable("lrunt_uzivatel", $whereStatement);
     }
 
+    public function deleteProduct(int $productId){
+        $whereStatement = "id_produkt = $productId";
+
+        return $this->deleteFromTable("lrunt_produkt", $whereStatement);
+    }
 
     public function userExist(string $username){
         $where = "username='$username'";

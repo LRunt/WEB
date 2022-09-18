@@ -37,7 +37,12 @@
                     <td>$product[cena] Kč</td>
                     <td>$product[mnozstvi]</td>
                     <td><button>Uprav</button></td>
-                    <td><button>Smaž</button></td></tr>";
+                    <td>
+                        <form method='post'>
+                            <input type='hidden' name='id_produkt' value='$product[id_produkt]'>
+                            <button type='submit' class='btn btn-danger' name='action' value='delete'>Smaž</button>
+                        </form>        
+                    </td></tr>";
             }
             $res .= "</tbody>
                     </table>

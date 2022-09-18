@@ -34,6 +34,12 @@
                 }
             }
 
+            if(isset($_POST['action']) and $_POST['action'] == "delete" and isset($_POST['id_produkt'])){
+                echo $_POST['id_produkt'];
+                $res = $this->db->deleteProduct($_POST['id_produkt']);
+                echo $res;
+            }
+
             $tplData['products'] = $this->db->getAllProducts();
 
             ob_start();

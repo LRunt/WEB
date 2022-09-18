@@ -16,21 +16,21 @@
             $res .= "<div class='card-body container-xxl'>
                         <h1>Nový produkt</h1>
                         
-                        <form action='' method='POST'>
+                        <form action='' method='POST' enctype='multipart/form-data'>
                             <label class='form-label' for='name'>Název</label>
-                            <input type='text' id='name' class='form-control' required>
+                            <input type='text' id='name' class='form-control' name='name' required>
                                                    
                             <label class='form-label' for='photo'>Foto</label><br>
-                            <input type='file' id='photo' class='form-control' accept='image/png, image/gif, image/jpeg' required>   
+                            <input type='file' id='photo' class='form-control' name='photo' accept='image/png, image/gif, image/jpeg' value='' required>   
                         
                             <label class='form-label' for='price'>Cena</label>
-                            <input class='form-control' id='price' type='text' required>
+                            <input class='form-control' id='price' type='number' name='price' required>
                             
                             <label class='form-label' for='quantity'>Množství</label>
-                            <input class='form-control' id='quantity' type='text' required>
+                            <input class='form-control' id='quantity' type='text' name='quantity' required>
                             
                             <label class='form-label' for='type'>Typ</label>
-                            <input class='form-control mb-5' id='type' type='' required>
+                            <input class='form-control mb-5' id='type' type='' name='type' required>
                             
                             <div class='d-flex justify-content-start'>
                                 <input type='submit' name='submit' value='Uložit' class='btn btn-primary btn-lg'>
