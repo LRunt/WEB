@@ -10,27 +10,13 @@
 
     $tplHeaders->getHTMLHeader($tplData['title']);
 
-    $res = "<h1>Jídelní lístek</h1>
-                <div class='table-responsive'>
-                <table class='table align-middle mb-0 bg-white'>
-                    <thead class='bg-light'>
-                        <tr>
-                        <th>Pokrm</th>
-                        <th>Cena</th>
-                        <th>Množství</th>
-                        </tr>
-                    </thead><tbody>";
+    $res = "<h1>Jídelní lístek</h1>";
 
-    foreach($tplData['food'] as $f) {
-        $res .="<tr>
-            <th scope='row'>$f[nazev]</th>
-            <td>$f[cena] Kč</td>
-            <td>$f[mnozstvi]</td></tr>";
+    foreach($tplData['product'] as $f) {
+        $res .="
+            <b>$f[nazev]</b><br>
+            $f[foto]";
     }
-
-    $res .= "</tbody>
-              </table>
-              </div>";
 
     echo $res;
 
