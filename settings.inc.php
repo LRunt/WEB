@@ -74,6 +74,20 @@
             "file_name" => "NewProductController.php",
             "class_name" => "NewProductController",
             "right_weight" => "10"
+        ),
+        "newReview" => array(
+            "title" => "Nová recenze",
+
+            "file_name" => "NewReviewController.php",
+            "class_name" => "NewReviewController",
+            "right_weight" => "1"
+        ),
+        "allReviews" => array(
+            "title" => "Recenze",
+
+            "file_name" => "ReviewsController.php",
+            "class_name" => "ReviewsController",
+            "right_weight" => "0"
         )
     );
 
