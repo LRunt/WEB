@@ -12,7 +12,7 @@
     $res = "";
 
     if($tplData['isLogged']){
-        if($tplData['weight'] > WEB_PAGES['sprava']['right_weight']){
+        if($tplData['weight'] > WEB_PAGES['newProduct']['right_weight']){
             $res .= "<div class='card-body container-xxl'>
                         <h1>Nový produkt</h1>
                         
@@ -43,10 +43,10 @@
                         </form>
                      </div>";
         }else{
-            $res .= "<p>Nedostatečná práva!</p>";
+            $tplHeaders->getInadequateRightsPage();
         }
     }else{
-        $res .= "<p>Nedostatečná práva!</p>";
+        $tplHeaders->getInadequateRightsPage();
     }
 
     echo $res;

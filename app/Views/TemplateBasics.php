@@ -5,6 +5,17 @@
  */
 class TemplateBasics{
 
+    public function getInadequateRightsPage(){
+        ?>
+
+        <h1 class="text-center"><b>Nedostatečná práva!</b></h1>
+        <p class="text-center">Pokud chcete vidět obsah stránky, budete se muset přihlásit.</p>
+        <div class="text-center">
+            <img src='data/inadequateRights.svg' width="600" class='img-fluid' alt='Bad rights'>
+        </div>
+        <?php
+    }
+
     /**
      * Returns a headre of the page
      * @param string $pageTitle name of the page

@@ -24,6 +24,16 @@ class ReviewsController implements IController {
             $tplData['weight'] = $this->db->getWeightOfRight($tplData['user']['id_pravo']);
         }
 
+        if(isset($_POST['action'])){
+            if($_POST['action'] == 'logout'){
+                $this->db->userLogout();
+                header("Refresh:0");
+                #echo "OK: Uživatel byl odhlášen.";
+            }else{
+                #echo "WARNING: neznámá akce";
+            }
+        }
+
         ob_start();
 
         require_once(DIRECTORY_VIEWS."/ReviewsTemplate.php");
