@@ -34,6 +34,8 @@
                 }
             }
 
+            $tplData['products'] = $this->db->getAllProducts();
+
             ob_start();
 
             require_once(DIRECTORY_VIEWS."/NewReviewTemplate.php");

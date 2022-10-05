@@ -13,6 +13,7 @@ class TemplateBasics{
         <div class="text-center">
             <img src='data/inadequateRights.svg' width="600" class='img-fluid' alt='Bad rights'>
         </div>
+
         <?php
     }
 
