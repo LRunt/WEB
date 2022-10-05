@@ -34,6 +34,10 @@ class ReviewsController implements IController {
             }
         }
 
+        $tplData['reviews'] = $this->db->getAllReviews();
+        $tplData['users'] = $this->db->getAllUsers();
+        $tplData['products'] = $this->db->getAllProducts();
+
         ob_start();
 
         require_once(DIRECTORY_VIEWS."/ReviewsTemplate.php");

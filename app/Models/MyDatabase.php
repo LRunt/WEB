@@ -126,6 +126,10 @@ class MyDatabase{
         return $this->selectFromTable("lrunt_typ_produktu", "", "id_typ");
     }
 
+    function getAllReviews(){
+        return $this->selectFromTable("lrunt_recenze", "", "id_recenze");
+    }
+
     function getUserReviews(int $idUzivatel){
         return $this->selectFromTable("lrunt_recenze", "'$idUzivatel'=id_uzivatel", "id_recenze");
     }

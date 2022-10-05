@@ -82,7 +82,7 @@
             "class_name" => "NewReviewController",
             "right_weight" => "1"
         ),
-        "allReviews" => array(
+        "reviews" => array(
             "title" => "Recenze",
 
             "file_name" => "ReviewsController.php",
