@@ -23,7 +23,7 @@
                         <form action='' method='POST'>
                             <label class='form-label' for='produkt'>Recenze na</label>
                             <select name='product' id='produkt' class='form-control'>
-                                <option value='none'>Restaurace</option>";
+                                <option value=''>Restaurace</option>";
                                 foreach ($tplData['products'] as $product){
                                     $res .=     "    <option value=$product[id_produkt]>$product[nazev]</option>";
                                 }
@@ -39,7 +39,7 @@
                             </select>
                         
                             <label class='form-label' for='text'>Text recenze</label>
-                            <textarea class='form-control' id='text' rows='3'></textarea>   
+                            <textarea class='form-control' name='text' id='text' rows='3' required></textarea>   
                             
                             <br>
                             <div class='d-flex justify-content-start'>

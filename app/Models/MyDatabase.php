@@ -142,6 +142,12 @@ class MyDatabase{
         return $this->insertIntoTable("lrunt_produkt", $insertStatement, $insertValues);
     }
 
+    public function addNewReview(int $idUser, int $idProduct, int $rating, int $published, string $text){
+        $insertStatement = "id_uzivatel, id_produkt, hodnoceni, zverejneno, popis";
+        $inserValues = "'$idUser', '$idProduct', '$rating', '$published', '$text'";
+        return $this->insertIntoTable("lrunt_recenze", $insertStatement, $inserValues);
+    }
+
     public function updateUser(int $idUzivatel, string $username, string $password, string $email, int $idPravo){
         $updateStatementWithValues = "username='$username', heslo='$password', email='$email', id_pravo='$idPravo'";
         $whereStatement = "id_uzivatel=$idUzivatel";

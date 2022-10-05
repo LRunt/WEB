@@ -36,6 +36,11 @@
 
             $tplData['products'] = $this->db->getAllProducts();
 
+            if(isset($_POST['text'])){
+                echo $tplData['user']['id_uzivatel'];
+                $res = $this->db->addNewReview($tplData['user']['id_uzivatel'], $_POST['product'], $_POST['rating'], 1, $_POST['text']);
+            }
+
             ob_start();
 
             require_once(DIRECTORY_VIEWS."/NewReviewTemplate.php");
