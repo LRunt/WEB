@@ -158,15 +158,26 @@ class MyDatabase{
         return $this->updateInTable(TABLE_UZIVATEL, $updateStatementWithValues, $whereStatement);
     }
 
+    public function updateReview(int $idReview, int $idUser, int $idProduct, int $rating, int $published, string $description){
+        $updateStatementWithValues = "id_uzivatel='$idUser', id_produkt='$idProduct', hodnoceni='$rating', zverejneno='$published', popis='$description'";
+        $whereStatement = "id_recenze=$idReview";
+        return $this->updateInTable(TABLE_RECENZE, $updateStatementWithValues, $whereStatement);
+    }
+
     public function getUser(int $idUzivatel){
         $where = "id_uzivatel='$idUzivatel'";
-        return $this->selectFromTable("lrunt_uzivatel", $where);;
+        return $this->selectFromTable(TABLE_UZIVATEL, $where);;
+    }
+
+    public function getReview(int $idReview){
+        $where = "id_recenze='$idReview'";
+        return $this->selectFromTable(TABLE_RECENZE, $where);
     }
 
     public function deleteUser(int $userId){
         $whereStatement =  "id_uzivatel = $userId";
 
-        return $this->deleteFromTable("lrunt_uzivatel", $whereStatement);
+        return $this->deleteFromTable(TABLE_UZIVATEL, $whereStatement);
     }
 
     public function deleteProduct(int $productId){

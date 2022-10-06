@@ -28,7 +28,7 @@
             }
             $res .=" <div>
                         <h5><b><u>$username</u></b></h5>
-                        <h6><b>Produkt:</b> $productName</h6>
+                        <h6><b>$productName</b></h6>
                         <style>
                             .checked {
                                 color: orange;
@@ -44,13 +44,57 @@
             $res .="    <p>$review[popis]</p>";
             if($tplData['isLogged']){
                 if($tplData['user']['id_pravo'] <= 2){
-                    $res .= "<button>Zveřejni</button>";
+                    $res .= "<p><b>Stav:</b> Veřejné</p>
+                            <form action='' method='POST'>
+                                <input type='hidden' name='id_review' value=$review[id_recenze]>
+                                <button type='submit' name='action' class='btn btn-danger' style='width: 150px' value='hide'>Skrýt</button>
+                            </form>";
                 }
             }
             $res .= "  <hr></div>";
+        }else{
+            if($tplData['isLogged']){
+                if($tplData['user']['id_pravo'] <= 2){
+                    $username = "";
+                    $productName = "";
+                    foreach ($tplData['users'] as $user){
+                        if($user['id_uzivatel'] == $review['id_uzivatel']){
+                            $username = $user['username'];
+                        }
+                    }
+                    foreach ($tplData['products'] as $product){
+                        if($product['id_produkt'] == $review['id_produkt']){
+                            $productName = $product['nazev'];
+                        }
+                    }
+                    $res .=" <div>
+                        <h5><b><u>$username</u></b></h5>
+                        <h6><b>$productName</b></h6>
+                        <style>
+                            .checked {
+                                color: orange;
+                            }
+                        </style>";
+                    $blackStars = 5 - $review['hodnoceni'];
+                    for($i = 0; $i < $review['hodnoceni']; $i++){
+                        $res .= "<span class='fa fa-star checked'></span>";
+                    }
+                    for($i = 0; $i < $blackStars; $i++){
+                        $res .= "<span class='fa fa-star'></span>";
+                    }
+                    $res .="    <p>$review[popis]</p>
+                            <p><b>Stav:</b> Neveřejné</p>
+                            <form action='' method='POST'>
+                                <input type='hidden' name='id_review' value=$review[id_recenze]>
+                                <button type='submit' class='btn btn-success' name='action' style='width: 150px' value='publish'>Zveřejnit</button>
+                            </form>
+                            <hr></div>";
+                }
+            }
         }
 
     }
+
     echo $res;
 
     $tplHeaders->getHTMLFooter();
