@@ -72,15 +72,17 @@
             <input type='hidden' name='action' value='logout'>
             <input type='submit' name='potvrzeni' value='Odhlásit'>
         </form>
+        
+       <h4>Zveřejněné recenze</h4><hr>
         ";
         if(count($tplData['reviews']) == 0){
             $res .= "Zatím jste nezveřejnili žádnou recenzi.";
         }else{
             $i = 1;
             foreach ($tplData['reviews'] as $r){
-                $res .= "Rezenze $i<br>
-                         Hodnoceni: $r[pocet_hvezd]<br>
-                         Popis: $r[popis]";
+                $res .= "<b>Rezenze $i</b><br>
+                         Popis: $r[popis]
+                         <hr>";
                 $i++;
             }
 
