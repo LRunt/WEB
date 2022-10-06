@@ -35,9 +35,13 @@
                       <div class='form-outline mb-4'>
                         <input type='password' id='form1Example23' class='form-control form-control-lg' name='heslo' />
                         <label class='form-label' for='form1Example23'>Heslo</label>
-                      </div>
+                      </div>";
+
+                if ($tplData['error']){
+                    $res .= "<div class='p-3 mb-2 bg-danger text-white'>$tplData[error]</div>";
+                }
             
-                      <div class='d-flex justify-content-around align-items-center mb-4'>
+             $res .= "<div class='d-flex justify-content-around align-items-center mb-4'>
             
                       <!-- Submit button -->
                       <input type='hidden' name='action' value='login'>

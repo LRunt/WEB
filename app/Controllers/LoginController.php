@@ -16,6 +16,7 @@ class LoginController implements IController {
 
         $tplData['title'] = $pageTitle;
         $tplData['user'] = [];
+        $tplData['error'] = "";
 
         if(isset($_POST['action'])){
             if($_POST['action'] == 'login' && isset($_POST['username']) && isset($_POST['heslo'])){
@@ -23,7 +24,7 @@ class LoginController implements IController {
                 if($res){
                     #echo "OK: uživatel byl přihlášen";
                 }else{
-                    #echo "ERROR: Přihlášení uživatele se nezdařilo.";
+                    $tplData['error'] = "Neplatné uživatelské jméno nebo špatné heslo";
                 }
             }
 
