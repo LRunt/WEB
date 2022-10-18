@@ -55,7 +55,7 @@
                                   <div class='d-flex flex-row align-items-center mb-4'>
                                     <i class='fas fa-key fa-lg me-3 fa-fw'></i>
                                     <div class='form-outline flex-fill mb-0'>
-                                      <input type='password' id='form3Example4cd' class='form-control' name='heslo2' id='pas2' required/>
+                                      <input type='pas+sword' id='form3E+xample4cd' class='form-control' name='heslo2' id='pas2' required/>
                                       <label class='form-label' for='form3Example4cd'>Heslo (znovu)</label>
                                     </div>
                                   </div>
@@ -63,7 +63,7 @@
                                   <div class='form-check d-flex justify-content-center mb-5'>
                                     <input class='form-check-input me-2' type='checkbox' value='' id='form2Example3c' />
                                     <label class='form-check-label' for='form2Example3'>
-                                      Souhlasím se všemi <a href='#!'>Podmínkami užití</a>
+                                      Souhlasím se všemi <a href='http://localhost/WEB/index.php?page=policy'>Podmínkami užití</a>
                                     </label>
                                   </div>
                 

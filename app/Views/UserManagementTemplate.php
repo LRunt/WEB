@@ -79,10 +79,10 @@
                 </table>
                 </div>";
         }else{
-            $res .= "<p>Nedostatečná práva!</p>";
+            $tplHeaders->getInadequateRightsPage();
         }
     }else{
-        $res .= "<p>Nedostatečná práva!</p>";
+        $tplHeaders->getInadequateRightsPage();
     }
 
 

@@ -88,6 +88,13 @@
             "file_name" => "ReviewsController.php",
             "class_name" => "ReviewsController",
             "right_weight" => "0"
+        ),
+        "policy" => array(
+            "title" => "Soukromí",
+
+            "file_name" => "PolicyController.php",
+            "class_name" => "PolicyController",
+            "right_weight" => "0"
         )
     );
 

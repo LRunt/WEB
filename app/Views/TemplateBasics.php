@@ -50,7 +50,7 @@ class TemplateBasics{
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <?php
                             foreach(WEB_PAGES as $key => $pInfo){
-                                if($key!='login' && $key!='register' && $key!='newReview' && $key!='newProduct'){
+                                if($key!='login' && $key!='register' && $key!='newReview' && $key!='newProduct' && $key!='policy'){
                                     $weight_of_rights = 0;
                                     if($tplData['isLogged']){
                                         $weight_of_rights = $tplData['weight'];

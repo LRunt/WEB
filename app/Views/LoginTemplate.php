@@ -70,14 +70,14 @@
         $user = $tplData['user'];
         $res .= "
                  <h2>Přihlášený uživatel</h2>
-        Přezdívka: $user[username]<br>
-        Email: $user[email]<br>
+        <b>Přezdívka:</b> $user[username]<br>
+        <b>Email:</b> $user[email]<br>
         <form action='' method='POST'>
             <input type='hidden' name='action' value='logout'>
-            <input type='submit' name='potvrzeni' value='Odhlásit'>
+            <input type='submit' name='potvrzeni' value='Odhlásit' class='btn btn-success mt-2'>
         </form>
         
-       <h4>Zveřejněné recenze</h4><hr>
+       <h4 class='mt-3'>Zveřejněné recenze</h4><hr>
         ";
         if(count($tplData['reviews']) == 0){
             $res .= "Zatím jste nezveřejnili žádnou recenzi.";
@@ -85,7 +85,20 @@
             $i = 1;
             foreach ($tplData['reviews'] as $r){
                 $res .= "<b>Rezenze $i</b><br>
-                         Popis: $r[popis]
+                         <style>
+                            .checked {
+                                color: orange;
+                            }
+                        </style>";
+                $blackStars = 5 - $r['hodnoceni'];
+                for($i = 0; $i < $r['hodnoceni']; $i++){
+                    $res .= "<span class='fa fa-star checked'></span>";
+                }
+                for($i = 0; $i < $blackStars; $i++){
+                    $res .= "<span class='fa fa-star'></span>";
+                }
+                $res .="<br>
+                         $r[popis]
                          <hr>";
                 $i++;
             }
