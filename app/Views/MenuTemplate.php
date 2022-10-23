@@ -19,7 +19,7 @@
 
         $res .= "
              <div style='width: 150px; float:left; margin:10px'>
-                <img src='$f[photo]' class='img-fluid' alt='ukazka jidla' width='100' height='100'>
+                <img src='$f[photo]' class='img-fluid' alt='ukazka jidla' width='200' height='100'>
              </div>
              <div style='width: 45%; float:left; margin:10px'>
                 <b>Cena: </b> $f[cena]Kč<br>

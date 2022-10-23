@@ -23,7 +23,7 @@
                         <form action='' method='POST'>
                             <label class='form-label' for='produkt'>Recenze na</label>
                             <select name='product' id='produkt' class='form-control'>
-                                <option value=''>Restaurace</option>";
+                                <option value='NULL'>Restaurace</option>";
                                 foreach ($tplData['products'] as $product){
                                     $res .=     "    <option value=$product[id_produkt]>$product[nazev]</option>";
                                 }

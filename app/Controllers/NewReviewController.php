@@ -37,7 +37,11 @@
             $tplData['products'] = $this->db->getAllProducts();
 
             if(isset($_POST['text'])){
-                $res = $this->db->addNewReview($tplData['user']['id_uzivatel'], $_POST['product'], $_POST['rating'], 1, $_POST['text']);
+                if($_POST['product'] != 'NULL'){
+                    $res = $this->db->addNewReview($tplData['user']['id_uzivatel'], $_POST['product'], $_POST['rating'], 1, $_POST['text']);
+                }else{
+                    $res = $this->db->addNewReview2($tplData['user']['id_uzivatel'], $_POST['rating'], 1, $_POST['text']);
+                }
                 header('Location: http://localhost/WEB/index.php?page=reviews');
             }
 
