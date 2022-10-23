@@ -31,13 +31,9 @@
                     #echo "OK: Uživatel byl odhlášen.";
                 }else if($_POST['action'] == 'newProduct'){
                     header("Location: http://localhost/WEB/index.php?page=newProduct");
+                }else if($_POST['action'] == "delete" and isset($_POST['id_produkt'])){
+                    $res = $this->db->deleteProduct($_POST['id_produkt']);
                 }
-            }
-
-            if(isset($_POST['action']) and $_POST['action'] == "delete" and isset($_POST['id_produkt'])){
-                echo $_POST['id_produkt'];
-                $res = $this->db->deleteProduct($_POST['id_produkt']);
-                echo $res;
             }
 
             $tplData['products'] = $this->db->getAllProducts();

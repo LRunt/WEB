@@ -35,8 +35,8 @@ class ReviewsController implements IController {
             }else if($_POST['action']=='publish'){
                 $review = $this->db->getReview($_POST['id_review']);
                 $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], $review[0]['id_produkt'], $review[0]['hodnoceni'], 1, $review[0]['popis']);
-            }else{
-
+            }else if($_POST['action']=='newReview'){
+                header("Location: http://localhost/WEB/index.php?page=newReview");
             }
         }
 

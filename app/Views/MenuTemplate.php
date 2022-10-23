@@ -16,11 +16,9 @@
         $res .="
             <b>$f[nazev]</b><br>";
 
-        var_dump($tplData['product']);
+        //var_dump($tplData['product']);
 
-        /*while($row = $f['foto']->fetch_assoc()){
-            $res.="<img src='data:image/jpg;charset=utf8;base64,'/>";
-        }*/
+        $res.="<img [src]='data:image/png;base64,base64_encode($f[foto])'/>";
     }
 
     echo $res;

@@ -11,7 +11,17 @@
 
     $tplHeaders->getHTMLHeader($tplData['title']);
 
-    $res = "";
+    $res = "<h1>Recenze</h1>";
+    if($tplData['isLogged']){
+        $res .= "
+                <div>
+                    <form method='post'>
+                        <input type='hidden' name='newReview' value=''>
+                        <button type='submit' class='btn btn-primary float-end' name='action' value='newReview'>Napsat recenzi</button>
+                    </form>
+                </div>    
+                ";
+    }
     foreach($tplData['reviews'] as $review){
         if($review['zverejneno'] >= 1){
             $username = "";
