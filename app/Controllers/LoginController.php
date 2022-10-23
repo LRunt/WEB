@@ -20,10 +20,14 @@ class LoginController implements IController {
 
         if(isset($_POST['action'])){
             if($_POST['action'] == 'login' && isset($_POST['username']) && isset($_POST['heslo'])){
-                $res = $this->db->userLogin($_POST['username'], $_POST['heslo']);
-                if($res){
-                    #echo "OK: uživatel byl přihlášen";
-                }else{
+                if(password_verify($_POST['heslo'], $this->db->userGetHash($_POST['username']))){
+                    $res = $this->db->userLogin($_POST['username']);
+                    if($res){
+                        #echo "OK: uživatel byl přihlášen";
+                    }else{
+                        $tplData['error'] = "Neplatné uživatelské jméno nebo špatné heslo";
+                    }
+                } else{
                     $tplData['error'] = "Neplatné uživatelské jméno nebo špatné heslo";
                 }
             }

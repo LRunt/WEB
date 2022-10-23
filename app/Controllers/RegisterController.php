@@ -33,12 +33,13 @@ class RegisterController implements IController {
             }elseif ($this->db->userExist($_POST['username'])){
                 #echo "Prezdivka zabrana!";
             }else{
+                $hash = password_hash($_POST['heslo'], PASSWORD_BCRYPT);
                 // pozn.: heslo by melo byt sifrovano
                 // napr. password_hash($password, PASSWORD_BCRYPT) pro sifrovani
                 // a password_verify($password, $hash) pro kontrolu hesla.
 
                 // mam vsechny atributy - ulozim uzivatele do DB
-                $res = $this->db->addNewUser($_POST['username'], $_POST['heslo'], $_POST['email']);
+                $res = $this->db->addNewUser($_POST['username'], $hash, $_POST['email']);
                 // byl ulozen?
                 if($res){
                     #echo "OK: Uživatel byl přidán do databáze.";

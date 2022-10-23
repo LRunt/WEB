@@ -203,8 +203,8 @@ class MyDatabase{
         }
     }
 
-    public function userLogin(string $username, string $password){
-        $where = "username='$username' AND heslo='$password'";
+    public function userLogin(string $username){
+        $where = "username='$username'";
         $user = $this->selectFromTable("lrunt_uzivatel", $where);
 
         if(count($user)){
@@ -212,6 +212,15 @@ class MyDatabase{
             return true;
         } else{
             return false;
+        }
+    }
+
+    public function userGetHash(string $username){
+        $where =  "username='$username'";
+        $user = $this->selectFromTable("lrunt_uzivatel", $where);
+
+        if(count($user)){
+            return $user[0]['heslo'];
         }
     }
 
