@@ -17,17 +17,20 @@ class RegisterController implements IController {
         global $tplData;
         $tplData = [];
 
+        $tplData['error'] = "";
+
         $tplData['isLogged'] = $this->db->isUserLogged();
         if($tplData['isLogged']){
-            $tplData['user'] = $this->db->getLoggedUserData();
-            $tplData['weight'] = $this->db->getWeightOfRight($tplData['user']['id_pravo']);
+            $this->db->userLogout();
         }
 
         if(!empty($_POST['username']) && !empty($_POST['heslo']) && !empty($_POST['heslo2'])
             && !empty($_POST['email'])
             && $_POST['heslo'] == $_POST['heslo2']
         ){
-            if($this->db->userExist($_POST['username'])){
+            if(empty($_POST['souhlas'])){
+                $tplData['error'] = "Potvrďte prosím souhlas s podmínkami užití.";
+            }elseif ($this->db->userExist($_POST['username'])){
                 #echo "Prezdivka zabrana!";
             }else{
                 // pozn.: heslo by melo byt sifrovano

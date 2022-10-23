@@ -60,17 +60,20 @@
                                     </div>
                                   </div>
                 
-                                  <div class='form-check d-flex justify-content-center mb-5'>
-                                    <input class='form-check-input me-2' type='checkbox' value='' id='form2Example3c' />
+                                  <div class='form-check d-flex justify-content-center mb-2'>
+                                    <input class='form-check-input me-2' type='checkbox' class='form-control' name='souhlas' id='form2Example3c' />
                                     <label class='form-check-label' for='form2Example3'>
                                       Souhlasím se všemi <a href='http://localhost/WEB/index.php?page=policy'>Podmínkami užití</a>
                                     </label>
-                                  </div>
-                
-                                  <div class='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
+                                  </div>";
+
+                    if($tplData['error']){
+                        $res .= "<div class='p-3 mb-2 bg-danger text-white'>$tplData[error]</div>";
+                    }
+
+        $res .= "                <div class='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
                                     <input type='submit' name='potvrzeni' value='Registrovat' class='btn btn-primary btn-lg'>
                                   </div>
-                
                                 </form>
                 
                               </div>
