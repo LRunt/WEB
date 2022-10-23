@@ -38,12 +38,16 @@ class NewProductController implements IController{
         $tplData['product'] = $this->db->getAllProducts();
 
         if(isset($_POST['name'])){
-            /*$filename = $_FILES["photo"]["name"];
-            $tempname = $_FILES["photo"]["tmp_name"];*/
+            $target_dir = "data/products/";
+            $photo = date("Ymdhis").$tplData['user']['username']."-";
+            $target_file = $target_dir . $photo . basename($_FILES["photo"]["name"]);
 
-            $res = $this->db->addNewProduct($_POST['name'], $_POST['photo'], $_POST['price'], $_POST['quantity']);
-            echo "add";
 
+            move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file);
+
+            $res = $this->db->addNewProduct($_POST['name'], $target_file, $_POST['price'], $_POST['quantity']);
+
+            header('Location: http://localhost/WEB/index.php?page=productManagement');
         }
 
         ob_start();

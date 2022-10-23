@@ -140,8 +140,8 @@ class MyDatabase{
         return $this->insertIntoTable("lrunt_uzivatel", $insertStatement, $insertValues);
     }
 
-    public function addNewProduct(string $name, $photo, int $price, string $quantity){
-        $insertStatement = "nazev, foto, cena, mnozstvi";
+    public function addNewProduct(string $name, string $photo, int $price, string $quantity){
+        $insertStatement = "nazev, photo, cena, mnozstvi";
         $insertValues = "'$name', '$photo', '$price', '$quantity'";
         return $this->insertIntoTable("lrunt_produkt", $insertStatement, $insertValues);
     }

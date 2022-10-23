@@ -17,8 +17,10 @@
             <b>$f[nazev]</b><br>";
 
         //var_dump($tplData['product']);
+        //$image = base64_encode($f[foto]->load());
+        //res.="<img [src]='data:image/png;base64,'.$image)/>";
 
-        $res.="<img [src]='data:image/png;base64,base64_encode($f[foto])'/>";
+        $res .= "<img src='$f[photo]' class='img-fluid' alt='ukazka jidla' width='100' height='100'>";
     }
 
     echo $res;
