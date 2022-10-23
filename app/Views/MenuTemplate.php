@@ -10,18 +10,28 @@
 
     $tplHeaders->getHTMLHeader($tplData['title']);
 
-    $res = "<h1>Jídelní lístek</h1>";
+    $res = "<div class='row d-flex align-items-start justify-content-start h-100'>
+<h1>Jídelní lístek</h1>";
 
     foreach($tplData['product'] as $f) {
         $res .="
-            <b>$f[nazev]</b><br>";
+            <h6><b>$f[nazev]</b></h6><br>";
 
-        //var_dump($tplData['product']);
-        //$image = base64_encode($f[foto]->load());
-        //res.="<img [src]='data:image/png;base64,'.$image)/>";
+        $res .= "
+             <div style='width: 150px; float:left; margin:10px'>
+                <img src='$f[photo]' class='img-fluid' alt='ukazka jidla' width='100' height='100'>
+             </div>
+             <div style='width: 45%; float:left; margin:10px'>
+                <b>Cena: </b> $f[cena]Kč<br>
+                <b>Množství: </b> $f[mnozstvi]
+             </div>
+             <hr>
+            ";
 
-        $res .= "<img src='$f[photo]' class='img-fluid' alt='ukazka jidla' width='100' height='100'>";
+
     }
+
+    $res .='</div>';
 
     echo $res;
 
