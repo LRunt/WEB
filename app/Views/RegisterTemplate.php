@@ -31,7 +31,7 @@
                                   <div class='d-flex flex-row align-items-center mb-4'>
                                     <i class='fas fa-user fa-lg me-3 fa-fw'></i>
                                     <div class='form-outline flex-fill mb-0'>
-                                      <input type='text' id='form3Example1c' class='form-control' name='username' required/>
+                                      <input type='text' id='form3Example1c' class='form-control' name='username' value='$tplData[username]' required/>
                                       <label class='form-label' for='form3Example1c'>Přezdívka</label>
                                     </div>
                                   </div>
@@ -39,7 +39,7 @@
                                   <div class='d-flex flex-row align-items-center mb-4'>
                                     <i class='fas fa-envelope fa-lg me-3 fa-fw'></i>
                                     <div class='form-outline flex-fill mb-0'>
-                                      <input type='email' id='form3Example3c' class='form-control' name='email' required/>
+                                      <input type='email' id='form3Example3c' class='form-control' name='email' value='$tplData[email]' required/>
                                       <label class='form-label' for='form3Example3c'>Email</label>
                                     </div>
                                   </div>
@@ -47,7 +47,7 @@
                                   <div class='d-flex flex-row align-items-center mb-4'>
                                     <i class='fas fa-lock fa-lg me-3 fa-fw'></i>
                                     <div class='form-outline flex-fill mb-0'>
-                                      <input type='password' id='form3Example4c' class='form-control' name='heslo' id='pas1' required/>
+                                      <input type='password' id='form3Example4c' class='form-control' name='heslo' id='pas1' value='$tplData[password]' required/>
                                       <label class='form-label' for='form3Example4c'>Heslo</label>
                                     </div>
                                   </div>
@@ -55,7 +55,7 @@
                                   <div class='d-flex flex-row align-items-center mb-4'>
                                     <i class='fas fa-key fa-lg me-3 fa-fw'></i>
                                     <div class='form-outline flex-fill mb-0'>
-                                      <input type='password' id='form3E+xample4cd' class='form-control' name='heslo2' id='pas2' required/>
+                                      <input type='password' id='form3E+xample4cd' class='form-control' name='heslo2' id='pas2' value='$tplData[password2]' required/>
                                       <label class='form-label' for='form3Example4cd'>Heslo (znovu)</label>
                                     </div>
                                   </div>

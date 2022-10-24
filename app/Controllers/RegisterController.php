@@ -18,6 +18,10 @@ class RegisterController implements IController {
         $tplData = [];
 
         $tplData['error'] = "";
+        $tplData['username'] = "";
+        $tplData['email'] = "";
+        $tplData['password'] = "";
+        $tplData['password2'] = "";
 
         $tplData['isLogged'] = $this->db->isUserLogged();
         if($tplData['isLogged']){
@@ -26,24 +30,29 @@ class RegisterController implements IController {
 
         if(!empty($_POST['username']) && !empty($_POST['heslo']) && !empty($_POST['heslo2'])
             && !empty($_POST['email'])
-            && $_POST['heslo'] == $_POST['heslo2']
         ){
-            if(empty($_POST['souhlas'])){
+            $tplData['username'] = $_POST['username'];
+            $tplData['email'] = $_POST['email'];
+            $tplData['password'] = $_POST['heslo'];
+            $tplData['password2'] = $_POST['heslo2'];
+
+            if($_POST['heslo'] != $_POST['heslo2']){
+                $tplData['error'] = "Hesla nejsou stejná!";
+                #echo "hesla nejsou stejná";
+            } elseif(empty($_POST['souhlas'])){
                 $tplData['error'] = "Potvrďte prosím souhlas s podmínkami užití.";
-            }elseif ($this->db->userExist($_POST['username'])){
+            } elseif ($this->db->userExist($_POST['username'])){
+                $tplData['error'] = "Přezdívka je už zabrána jiným uživatelem.";
                 #echo "Prezdivka zabrana!";
             }else{
                 $hash = password_hash($_POST['heslo'], PASSWORD_BCRYPT);
-                // pozn.: heslo by melo byt sifrovano
-                // napr. password_hash($password, PASSWORD_BCRYPT) pro sifrovani
-                // a password_verify($password, $hash) pro kontrolu hesla.
 
                 // mam vsechny atributy - ulozim uzivatele do DB
                 $res = $this->db->addNewUser($_POST['username'], $hash, $_POST['email']);
                 // byl ulozen?
                 if($res){
                     #echo "OK: Uživatel byl přidán do databáze.";
-                    $res = $this->db->userLogin($_POST['username'], $_POST['heslo']);
+                    $res = $this->db->userLogin($_POST['username']);
                     header('Location: http://localhost/WEB/index.php?page=login');
                 } else {
                     #echo "ERROR: Uložení uživatele se nezdařilo.";

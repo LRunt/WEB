@@ -27,7 +27,7 @@
                     <form action='' method='POST'>
                       <!-- Email input -->
                       <div class='form-outline mb-4'>
-                        <input type='text' id='form1Example13' class='form-control form-control-lg' name='username'/>
+                        <input type='text' id='form1Example13' class='form-control form-control-lg' name='username' value='$tplData[username]'/>
                         <label class='form-label' for='form1Example13'>Uživatelské jméno</label>
                       </div>
             
