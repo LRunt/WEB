@@ -68,11 +68,12 @@
                     $res .=" <option value=$r[id_pravo] $selected>$r[nazev]</option>";
                 }
                 $res .= "</select></form></td>
-            <td>
-                <form method='post'>
-                    <input type='hidden' name='id_user' value='$u[id_uzivatel]'>
-                    <button type='submit' class='btn btn-danger' name='action' value='delete'>Smazat</button>
-                </form></td>
+                <td>
+                    <form method='post'>
+                        <input type='hidden' name='id_user' value='$u[id_uzivatel]'>
+                        <button type='submit' class='btn btn-danger' name='action' value='delete'>Smazat</button>
+                    </form>
+                </td>
             </tr>";
             }
             $res .= "    </tbody>
