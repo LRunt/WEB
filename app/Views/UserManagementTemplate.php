@@ -69,10 +69,26 @@
                 }
                 $res .= "</select></form></td>
                 <td>
-                    <form method='post'>
-                        <input type='hidden' name='id_user' value='$u[id_uzivatel]'>
-                        <button type='submit' class='btn btn-danger' name='action' value='delete'>Smazat</button>
-                    </form>
+                    <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#exampleModal$u[id_uzivatel]'>Smazat</button>
+                    <div class='modal fade' id='exampleModal$u[id_uzivatel]' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                      <div class='modal-dialog' role='document'>
+                        <div class='modal-content'>
+                          <div class='modal-header'>
+                            <h5 class='modal-title' id='exampleModalLabel'>Smazání uživatele</h5>
+                          </div>
+                          <div class='modal-body'>
+                            Opravdu chcete smazat uživatele <b>$u[username]</b>?
+                          </div>
+                          <div class='modal-footer'>
+                            <button type='button' class='btn btn-primary' data-dismiss='modal'>Zrušit</button>
+                            <form method='post'>
+                                 <input type='hidden' name='id_user' value='$u[id_uzivatel]'>
+                                 <button type='submit' class='btn btn-danger' name='action' value='delete'>Smazat</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </td>
             </tr>";
             }
