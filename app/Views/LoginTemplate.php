@@ -56,12 +56,11 @@
                 </div>";
     }else{
         $user = $tplData['user'];
-        $pravo  = "admin";
         $res .= "
                  <h2>Přihlášený uživatel</h2>
         <b>Přezdívka:</b> $user[username]<br>
         <b>Email:</b> $user[email]<br>
-        <b>Role: </b> $pravo<br>
+        <b>Role: </b> $tplData[role]<br>
         <form action='' method='POST'>
             <input type='hidden' name='action' value='logout'>
             <input type='submit' name='potvrzeni' value='Odhlásit' style='width: 150px' class='btn btn-success mt-2'>
@@ -105,10 +104,8 @@
                                   </div>
                                   <div class='modal-footer'>
                                     <button type='button' class='btn btn-primary' data-dismiss='modal'>Zrušit</button>
-                                    
                                          <input type='hidden' name='id_review_delete' value='$r[id_recenze]'>
                                          <button type='submit' class='btn btn-danger' name='action' value='delete'>Smazat</button>
-                                   
                                   </div>
                                 </div>
                               </div>

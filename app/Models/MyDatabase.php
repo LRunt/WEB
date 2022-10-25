@@ -230,6 +230,15 @@ class MyDatabase{
         }
     }
 
+    public function getUserRole(int $roleId){
+        $where = "id_pravo=$roleId";
+        $role = $this->selectFromTable("lrunt_pravo", $where);
+
+        if(count($role)){
+            return $role[0]['nazev'];
+        }
+    }
+
     /**
      * Logout of user
      */
