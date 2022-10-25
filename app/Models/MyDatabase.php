@@ -209,6 +209,17 @@ class MyDatabase{
         }
     }
 
+    public function emailIsTaken(string $email){
+        $where = "email='$email'";
+        $user = $this->selectFromTable("lrunt_uzivatel", $where);
+
+        if(count($user)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function userLogin(string $username){
         $where = "username='$username'";
         $user = $this->selectFromTable("lrunt_uzivatel", $where);

@@ -44,6 +44,8 @@ class RegisterController implements IController {
             } elseif ($this->db->userExist($_POST['username'])){
                 $tplData['error'] = "Přezdívka je už zabrána jiným uživatelem.";
                 #echo "Prezdivka zabrana!";
+            }elseif ($this->db->emailIsTaken($_POST['email'])){
+                $tplData['error'] = "Email je už použit u jiného účtu";
             }else{
                 $hash = password_hash($_POST['heslo'], PASSWORD_BCRYPT);
 
