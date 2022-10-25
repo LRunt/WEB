@@ -29,14 +29,27 @@
                                 }
               $res .= "     </select>
                         
-                            <label class='form-label' for='rating'>Hodnoceni</label>
-                            <select name='rating' id='rating' class='form-control'>
+                           
+                            <!--<select name='rating' id='rating' class='form-control'>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
                                 <option value='4'>4</option>
                                 <option value='5'>5</option>
-                            </select>
+                            </select>-->
+                            <label class='form-label mt-3' for='rating'>Hodnoceni</label><br>
+                            <div class='rate' id='rating'> 
+                                <input type='radio' id='star5' name='rate' value='5' />
+                                <label for='star5' title='Excelentní'>5 stars</label>
+                                <input type='radio' id='star4' name='rate' value='4' />
+                                <label for='star4' title='Výborné'>4 stars</label>
+                                <input type='radio' id='star3' name='rate' value='3' />
+                                <label for='star3' title='Dobré'>3 stars</label>
+                                <input type='radio' id='star2' name='rate' value='2' />
+                                <label for='star2' title='Průměrné'>2 stars</label>
+                                <input type='radio' id='star1' name='rate' value='1' />
+                                <label for='star1' title='Špatné'>1 star</label>
+                            </div><br><br>
                         
                             <label class='form-label' for='text'>Text recenze</label>
                             <textarea class='form-control' name='text' id='text' rows='3' required></textarea>   
