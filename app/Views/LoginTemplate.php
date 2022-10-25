@@ -54,18 +54,6 @@
                     </form>
                   </div>
                 </div>";
-
-        /*$res .= " <h2>Přihlášení uživatele</h2>
-
-    <form action='' method='POST'>
-        <table>
-            <tr><td>Login:</td><td><input type='text' name='username'></td></tr>
-            <tr><td>Heslo:</td><td><input type='password' name='heslo'></td></tr>
-        </table>
-        <input type='hidden' name='action' value='login'>
-        <input type='submit' name='potvrzeni' value='Přihlásit'>
-        <a href='user-registration.inc.php'>Nemám účet</a>
-    </form>";*/
     }else{
         $user = $tplData['user'];
         $pravo  = "admin";
@@ -103,11 +91,28 @@
                          $r[popis]
                          
                          <form action='' method='POST'>
-                            <input type='hidden' name='id_review_delete' value='$r[id_recenze]'>
-                            <button type='submit' class='btn btn-primary mt-2' name='action' style='width: 150px' value='edit'>Upravit</button> 
-                         
-                            <input type='hidden' name='id_review_edit' value='$r[id_recenze]'>
-                            <button type='submit' class='btn btn-danger mt-2' name='action' style='width: 150px' value='delete'>Smazat</button> 
+                           <input type='hidden' name='id_review_edit' value='$r[id_recenze]'>
+                           <button type='submit' class='btn btn-primary mt-2' name='action' style='width: 150px' value='edit'>Upravit</button> 
+                           <button type='button' class='btn btn-danger mt-2' style='width: 150px' data-toggle='modal' data-target='#delete$r[id_recenze]'>Smazat</button>
+                            <div class='modal fade' id='delete$r[id_recenze]' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                              <div class='modal-dialog' role='document'>
+                                <div class='modal-content'>
+                                  <div class='modal-header'>
+                                    <h5 class='modal-title' id='exampleModalLabel'>Smazání recenze</h5>
+                                  </div>
+                                  <div class='modal-body'>
+                                    Opravdu chcete smazat recenzi:<br><b>$r[popis]</b>?
+                                  </div>
+                                  <div class='modal-footer'>
+                                    <button type='button' class='btn btn-primary' data-dismiss='modal'>Zrušit</button>
+                                    
+                                         <input type='hidden' name='id_review_delete' value='$r[id_recenze]'>
+                                         <button type='submit' class='btn btn-danger' name='action' value='delete'>Smazat</button>
+                                   
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                          </form>
                          <hr>";
                 $i++;
