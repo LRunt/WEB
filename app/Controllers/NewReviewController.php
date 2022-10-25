@@ -9,6 +9,7 @@
         public function __construct(){
             require_once (DIRECTORY_MODELS."/MyDatabase.php");
             $this->db = new MyDatabase();
+            date_default_timezone_set('Europe/Prague');
         }
 
         public function show(string $pageTitle): string{
@@ -42,9 +43,9 @@
                     $rating = $_POST['rate'];
                 }
                 if($_POST['product'] != 'NULL'){
-                    $res = $this->db->addNewReview($tplData['user']['id_uzivatel'], $_POST['product'], $rating, 0, $_POST['text']);
+                    $res = $this->db->addNewReview($tplData['user']['id_uzivatel'], $_POST['product'], $rating, 0, date("Y-m-d H:i:s"), $_POST['text']);
                 }else{
-                    $res = $this->db->addNewReview2($tplData['user']['id_uzivatel'], $rating, 0, $_POST['text']);
+                    $res = $this->db->addNewReview2($tplData['user']['id_uzivatel'], $rating, 0, date("Y-m-d H:i:s"), $_POST['text']);
                 }
                 header('Location: http://localhost/WEB/index.php?page=reviews');
             }

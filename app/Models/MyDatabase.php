@@ -146,15 +146,15 @@ class MyDatabase{
         return $this->insertIntoTable("lrunt_produkt", $insertStatement, $insertValues);
     }
 
-    public function addNewReview(int $idUser, int $idProduct, int $rating, int $published, string $text){
-        $insertStatement = "id_uzivatel, id_produkt, hodnoceni, zverejneno, popis";
-        $inserValues = "'$idUser', '$idProduct', '$rating', '$published', '$text'";
+    public function addNewReview(int $idUser, int $idProduct, int $rating, int $published, string $date, string $text){
+        $insertStatement = "id_uzivatel, id_produkt, hodnoceni, zverejneno, datum, popis";
+        $inserValues = "'$idUser', '$idProduct', '$rating', '$published', '$date', '$text'";
         return $this->insertIntoTable("lrunt_recenze", $insertStatement, $inserValues);
     }
 
-    public function addNewReview2(int $idUser, int $rating, int $published, string $text){
-        $insertStatement = "id_uzivatel, hodnoceni, zverejneno, popis";
-        $inserValues = "'$idUser', '$rating', '$published', '$text'";
+    public function addNewReview2(int $idUser, int $rating, int $published, string $date, string $text){
+        $insertStatement = "id_uzivatel, hodnoceni, zverejneno, datum, popis";
+        $inserValues = "'$idUser', '$rating', '$published', '$date', '$text'";
         return $this->insertIntoTable("lrunt_recenze", $insertStatement, $inserValues);
     }
 
