@@ -192,6 +192,12 @@ class MyDatabase{
         return $this->deleteFromTable("lrunt_produkt", $whereStatement);
     }
 
+    public function deleteReview(int $reviewId){
+        $whereStatement = "id_recenze = $reviewId";
+
+        return $this->deleteFromTable("lrunt_recenze", $whereStatement);
+    }
+
     public function userExist(string $username){
         $where = "username='$username'";
         $user = $this->selectFromTable("lrunt_uzivatel", $where);

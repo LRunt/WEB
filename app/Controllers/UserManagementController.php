@@ -38,7 +38,6 @@ class UserManagementController implements IController {
             }
         }else if(isset($_POST['pravo'])){
             $user = $this->db->getUser($_POST['id_user']);
-            //var_dump($user);
             $update = $this->db->updateUser($_POST["id_user"],$user[0]["username"], $user[0]["heslo"], $user[0]["email"], $_POST["pravo"]);
             if($update){
                 $tplData['success'] = "OK";

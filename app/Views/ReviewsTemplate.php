@@ -97,6 +97,9 @@
                             <form action='' method='POST'>
                                 <input type='hidden' name='id_review' value=$review[id_recenze]>
                                 <button type='submit' class='btn btn-success' name='action' style='width: 150px' value='publish'>Zveřejnit</button>
+
+                                <input type='hidden' name='id_review_delete' value='$review[id_recenze]'>
+                                <button type='submit' class='btn btn-danger' name='action' style='width: 150px' value='delete'>Smazat</button>
                             </form>
                             <hr></div>";
                 }

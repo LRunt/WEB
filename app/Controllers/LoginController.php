@@ -34,11 +34,13 @@ class LoginController implements IController {
                     $tplData['error'] = "Neplatné uživatelské jméno nebo špatné heslo";
                     $tplData['username'] = $_POST['username'];
                 }
-            }
-
-            else if($_POST['action'] == 'logout'){
+            }elseif ($_POST['action'] == 'logout'){
                 $this->db->userLogout();
                 #echo "OK: Uživatel byl odhlášen.";
+            }elseif ($_POST['action'] == 'delete'){
+                $res = $this->db->deleteReview($_POST['id_review_delete']);
+            }elseif ($_POST['action'] == 'edit'){
+                echo "Edit";
             }else{
                 #echo "WARNING: neznámá akce";
             }

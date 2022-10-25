@@ -33,13 +33,6 @@
             "class_name" => "IntroductionController",
             "right_weight" => "0"
         ),
-        "sprava" => array(
-            "title" => "Správa uživatelů",
-
-            "file_name" => "UserManagementController.php",
-            "class_name" => "UserManagementController",
-            "right_weight" => "15"
-        ),
         "login" => array(
             "title" => "Přihlášení",
 
@@ -61,6 +54,20 @@
           "class_name" => "MenuController",
           "right_weight" => "0"
         ),
+        "reviews" => array(
+            "title" => "Recenze",
+
+            "file_name" => "ReviewsController.php",
+            "class_name" => "ReviewsController",
+            "right_weight" => "0"
+        ),
+        "sprava" => array(
+            "title" => "Správa uživatelů",
+
+            "file_name" => "UserManagementController.php",
+            "class_name" => "UserManagementController",
+            "right_weight" => "15"
+        ),
         "productManagement" => array(
             "title" => "Správa produktů",
 
@@ -81,13 +88,6 @@
             "file_name" => "NewReviewController.php",
             "class_name" => "NewReviewController",
             "right_weight" => "1"
-        ),
-        "reviews" => array(
-            "title" => "Recenze",
-
-            "file_name" => "ReviewsController.php",
-            "class_name" => "ReviewsController",
-            "right_weight" => "0"
         ),
         "policy" => array(
             "title" => "Soukromí",

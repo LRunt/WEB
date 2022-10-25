@@ -68,13 +68,15 @@
     </form>";*/
     }else{
         $user = $tplData['user'];
+        $pravo  = "admin";
         $res .= "
                  <h2>Přihlášený uživatel</h2>
         <b>Přezdívka:</b> $user[username]<br>
         <b>Email:</b> $user[email]<br>
+        <b>Role: </b> $pravo<br>
         <form action='' method='POST'>
             <input type='hidden' name='action' value='logout'>
-            <input type='submit' name='potvrzeni' value='Odhlásit' class='btn btn-success mt-2'>
+            <input type='submit' name='potvrzeni' value='Odhlásit' style='width: 150px' class='btn btn-success mt-2'>
         </form>
         
        <h4 class='mt-3'>Zveřejněné recenze</h4><hr>
@@ -99,6 +101,14 @@
                 }
                 $res .="<br>
                          $r[popis]
+                         
+                         <form action='' method='POST'>
+                            <input type='hidden' name='id_review_delete' value='$r[id_recenze]'>
+                            <button type='submit' class='btn btn-primary mt-2' name='action' style='width: 150px' value='edit'>Upravit</button> 
+                         
+                            <input type='hidden' name='id_review_edit' value='$r[id_recenze]'>
+                            <button type='submit' class='btn btn-danger mt-2' name='action' style='width: 150px' value='delete'>Smazat</button> 
+                         </form>
                          <hr>";
                 $i++;
             }
