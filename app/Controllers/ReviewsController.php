@@ -37,6 +37,9 @@ class ReviewsController implements IController {
                 $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], $review[0]['id_produkt'], $review[0]['hodnoceni'], 1, $review[0]['popis']);
             }else if($_POST['action']=='newReview'){
                 header("Location: http://localhost/WEB/index.php?page=newReview");
+            }elseif ($_POST['action']=='delete'){
+                $this->db->deleteReview($_POST['id_review_delete']);
+                //$tplData['info'] = "Recenze byla úspěšně smazána";
             }
         }
 
