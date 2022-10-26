@@ -11,6 +11,10 @@ class MyDatabase{
     private $mySession;
     /** @var string $userSessionKey is key for user data, which is saved in the session*/
     private $userSessionKey = "curret_user_id";
+    /** @var int $newReviewMode is value of mode 0 - new review, 1 - new review from menu (to a specific product), 2 - editing review */
+    private $newReviewMode = "new_review_mode";
+    /** @var int $reviewId is key of edited review */
+    private $reviewId = "curret_review_id";
 
     public function __construct(){
         $this->pdo = new PDO("mysql:host=localhost;dbname=sp_kiv_web", "root", "");
@@ -286,6 +290,48 @@ class MyDatabase{
         }else{
             return null;
         }
+    }
+
+    public function setEditedReview(int $reviewId, int $mode){
+        $where = "id_recenze='$reviewId'";
+        $_SESSION[$this->newReviewMode] = $mode;
+        $review = $this->selectFromTable("lrunt_recenze", $where);
+
+        if(count($review)){
+            $_SESSION[$this->reviewId] = $review[0]["id_recenze"];
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public function getEditingReviewData(){
+        if(isset($_SESSION[$this->reviewId])){
+            $reviewId = $_SESSION[$this->reviewId];
+            if($reviewId == null){
+                echo "SERVER ERROR: Recenze nenalezena";
+                return null;
+            }else{
+                $reviewData = $this->selectFromTable("lrunt_recenze", "id_recenze=$reviewId");
+                if(empty($reviewData)){
+                    echo "ERROR: Data recenze se nanachází v databázi.";
+                    return null;
+                }else{
+                    return $reviewData[0];
+                }
+            }
+        }else{
+            return null;
+        }
+    }
+
+    public function getNewReviewMode(){
+        return $_SESSION[$this->newReviewMode];
+    }
+
+    public function reviewEdited(){
+        $_SESSION[$this->newReviewMode] = 0;
+        unset($_SESSION[$this->reviewId]);
     }
 
     /**

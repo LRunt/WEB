@@ -18,6 +18,11 @@
             $tplData = [];
 
             $tplData['title'] = $pageTitle;
+            $tplData['mode'] = $this->db->getNewReviewMode();
+
+            if($tplData['mode'] == 2){
+                $tplData['reviewData'] = $this->db->getEditingReviewData();
+            }
 
             $tplData['isLogged'] = $this->db->isUserLogged();
             if($tplData['isLogged']){

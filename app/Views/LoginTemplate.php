@@ -92,6 +92,7 @@
                          <form action='' method='POST'>
                            <input type='hidden' name='id_review_edit' value='$r[id_recenze]'>
                            <button type='submit' class='btn btn-primary mt-2' name='action' style='width: 150px' value='edit'>Upravit</button> 
+                           
                            <button type='button' class='btn btn-danger mt-2' style='width: 150px' data-toggle='modal' data-target='#delete$r[id_recenze]'>Smazat</button>
                             <div class='modal fade' id='delete$r[id_recenze]' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                               <div class='modal-dialog' role='document'>

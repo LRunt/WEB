@@ -40,7 +40,8 @@ class LoginController implements IController {
             }elseif ($_POST['action'] == 'delete'){
                 $res = $this->db->deleteReview($_POST['id_review_delete']);
             }elseif ($_POST['action'] == 'edit'){
-                echo "Edit";
+                $res = $this->db->setEditedReview($_POST['id_review_edit'], 2);
+                header('Location: http://localhost/WEB/index.php?page=newReview');
             }else{
                 #echo "WARNING: neznámá akce";
             }
