@@ -47,12 +47,24 @@
                 if(isset($_POST['rate'])){
                     $rating = $_POST['rate'];
                 }
-                if($_POST['product'] != 'NULL'){
-                    $res = $this->db->addNewReview($tplData['user']['id_uzivatel'], $_POST['product'], $rating, 0, date("Y-m-d H:i:s"), $_POST['text']);
-                }else{
-                    $res = $this->db->addNewReview2($tplData['user']['id_uzivatel'], $rating, 0, date("Y-m-d H:i:s"), $_POST['text']);
+                if($tplData['mode'] == 0 || $tplData['mode'] == 1){
+                    if($_POST['product'] != 'NULL'){
+                        $res = $this->db->addNewReview($tplData['user']['id_uzivatel'], $_POST['product'], $rating, 0, date("Y-m-d H:i:s"), $_POST['text']);
+                    }else{
+                        $res = $this->db->addNewReview2($tplData['user']['id_uzivatel'], $rating, 0, date("Y-m-d H:i:s"), $_POST['text']);
+                    }
+                    header('Location: http://localhost/WEB/index.php?page=reviews');
                 }
-                header('Location: http://localhost/WEB/index.php?page=reviews');
+                if($tplData['mode'] == 2){
+                    if($_POST['product'] != 'NULL'){
+                        $res = $this->db->updateReview($tplData['reviewData']['id_recenze'], $tplData['user']['id_uzivatel'], $_POST['product'], $rating, 0, date("Y-m-d H:i:s"), $_POST['text']);
+                    }else{
+                        $res = $this->db->updateReview($tplData['reviewData']['id_recenze'], $tplData['user']['id_uzivatel'], -1, $rating, 0, date("Y-m-d H:i:s"), $_POST['text']);
+                    }
+                    header('Location: http://localhost/WEB/index.php?page=login');
+                }
+
+
             }
 
             ob_start();

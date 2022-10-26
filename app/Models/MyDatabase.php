@@ -168,8 +168,12 @@ class MyDatabase{
         return $this->updateInTable(TABLE_UZIVATEL, $updateStatementWithValues, $whereStatement);
     }
 
-    public function updateReview(int $idReview, int $idUser, int $idProduct, int $rating, int $published, string $description){
-        $updateStatementWithValues = "id_uzivatel='$idUser', id_produkt='$idProduct', hodnoceni='$rating', zverejneno='$published', popis='$description'";
+    public function updateReview(int $idReview, int $idUser, int $idProduct, int $rating, int $published, string $date, string $description){
+        if($idProduct != -1){
+            $updateStatementWithValues = "id_uzivatel='$idUser', id_produkt='$idProduct', hodnoceni='$rating', zverejneno='$published', datum='$date',popis='$description'";
+        } else{
+            $updateStatementWithValues = "id_uzivatel='$idUser', id_produkt=NULL, hodnoceni='$rating', zverejneno='$published', datum='$date',popis='$description'";
+        }
         $whereStatement = "id_recenze=$idReview";
         return $this->updateInTable(TABLE_RECENZE, $updateStatementWithValues, $whereStatement);
     }
