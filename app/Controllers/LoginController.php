@@ -18,6 +18,7 @@ class LoginController implements IController {
         $tplData['user'] = [];
         $tplData['error'] = "";
         $tplData['username'] = "";
+        $tplData['products'] = $this->db->getAllProducts();
 
         if(isset($_POST['action'])){
             if($_POST['action'] == 'login' && isset($_POST['username']) && isset($_POST['heslo'])){

@@ -71,9 +71,15 @@
         if(count($tplData['reviews']) == 0){
             $res .= "Zatím jste nezveřejnili žádnou recenzi.";
         }else{
-            $i = 1;
             foreach ($tplData['reviews'] as $r){
-                $res .= "<b>Rezenze $i</b><br>
+                $product = "Restaurace";
+                foreach ($tplData['products'] as $p){
+                    if($p['id_produkt'] == $r['id_produkt']) $product = $p['nazev'];
+                }
+                $date = strtotime($r['datum']);
+                $formattedDate = date('d. m. Y H:i', $date);
+                $res .= "<b>$product</b><br>
+                         $formattedDate<br>
                          <style>
                             .checked {
                                 color: orange;
@@ -113,7 +119,6 @@
                             </div>
                          </form>
                          <hr>";
-                $i++;
             }
 
         }
