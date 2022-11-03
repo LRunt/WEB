@@ -33,7 +33,7 @@
             if(isset($_POST['action'])){
                 if($_POST['action'] == 'logout'){
                     $this->db->userLogout();
-                    header("Refresh:0");
+                    header("Location: http://localhost/WEB/index.php");
                     #echo "OK: Uživatel byl odhlášen.";
                 }else{
                     #echo "WARNING: neznámá akce";

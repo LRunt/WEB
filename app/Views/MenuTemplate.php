@@ -43,8 +43,6 @@
                 $res .= "<span class='fa fa-star'></span>";
             }
         }
-
-
             $res.=" </div>
              <hr>
             ";
