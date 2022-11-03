@@ -36,6 +36,19 @@ class MenuController implements IController{
 
         $tplData['product'] = $this->db->getAllProducts();
 
+        $tplData['products'] = $this->db->getAllProducts();
+
+        $ratings = [];
+        foreach($tplData['products'] as $product){
+            $res = $this->db->getAverageRating($product['id_produkt']);
+            if($res == null){
+                $ratings[$product['id_produkt']] = 'N/A';
+            }else{
+                $ratings[$product['id_produkt']] = $res;
+            }
+        }
+        $tplData['average_ratings'] = $ratings;
+
         ob_start();
 
         require_once(DIRECTORY_VIEWS ."/MenuTemplate.php");

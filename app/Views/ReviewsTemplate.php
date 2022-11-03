@@ -23,6 +23,8 @@
                 ";
     }
     foreach($tplData['reviews'] as $review){
+        $date = strtotime($review['datum']);
+        $formattedDate = date('d. m. Y H:i', $date);
         if($review['zverejneno'] >= 1){
             $username = "";
             $productName = "";
@@ -36,9 +38,10 @@
                     $productName = $product['nazev'];
                 }
             }
-            $res .=" <div>
+            $res .= " <div>
                         <h5><b><u>$username</u></b></h5>
                         <h6><b>$productName</b></h6>
+                        $formattedDate<br>
                         <style>
                             .checked {
                                 color: orange;
@@ -99,6 +102,7 @@
                     $res .=" <div>
                         <h5><b><u>$username</u></b></h5>
                         <h6><b>$productName</b></h6>
+                        $formattedDate<br>
                         <style>
                             .checked {
                                 color: orange;

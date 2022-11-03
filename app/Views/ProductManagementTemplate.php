@@ -30,7 +30,6 @@
                             <th>Pokrm</th>
                             <th>Cena</th>
                             <th>Množství</th>
-                            <th>Uprav</th> 
                             <th>Smaž</th>  
                             </tr>
                         </thead><tbody>";
@@ -39,7 +38,6 @@
                     <th scope='row'>$product[nazev]</th>
                     <td>$product[cena] Kč</td>
                     <td>$product[mnozstvi]</td>
-                    <td><button class='btn btn-primary'>Uprav</button></td>
                     <td>
                       <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#exampleModal$product[id_produkt]'>Smazat</button>
                         <div class='modal fade' id='exampleModal$product[id_produkt]' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>

@@ -42,8 +42,8 @@ class MyDatabase{
         }
     }
 
-    public function selectFromTable(string $tableName, string $whereStatement = "", string $orderStatement = ""):array {
-        $q = "SELECT * FROM ". $tableName
+    public function selectFromTable(string $tableName, string $whereStatement = "", string $orderStatement = "", string $column = "*"):array {
+        $q = "SELECT " . $column . " FROM ". $tableName
             .(($whereStatement == "") ? "" : " WHERE $whereStatement")
             .(($orderStatement == "") ? "" : " ORDER BY $orderStatement");
 
@@ -186,6 +186,12 @@ class MyDatabase{
     public function getReview(int $idReview){
         $where = "id_recenze='$idReview'";
         return $this->selectFromTable(TABLE_RECENZE, $where);
+    }
+
+    public function getAverageRating(int $idProduct){
+        $where = "id_produkt='$idProduct'";
+        $res = $this->selectFromTable(TABLE_RECENZE, $where, "", "AVG(hodnoceni)");
+        return $res[0][0];
     }
 
     public function deleteUser(int $userId){
