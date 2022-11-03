@@ -26,8 +26,26 @@
              <div style='width: 45%; float:left; margin:10px'>
                 <b>Cena: </b> $f[cena]Kč<br>
                 <b>Množství: </b> $f[mnozstvi]<br>
-                <b>Průměrné hodnocení: </b> $averageRating*<br>
-             </div>
+                <b>Průměrné hodnocení: </b>
+                <style>
+                  .checked {
+                    color: orange;
+                  }
+                </style>";
+        if ($averageRating == "N/A"){
+            $res .= "$averageRating";
+        }else{
+            $blackStars = 5 - round($averageRating);
+            for($i = 0; $i < round($averageRating); $i++){
+                $res .= "<span class='fa fa-star checked'></span>";
+            }
+            for($i = 0; $i < $blackStars; $i++){
+                $res .= "<span class='fa fa-star'></span>";
+            }
+        }
+
+
+            $res.=" </div>
              <hr>
             ";
     }
