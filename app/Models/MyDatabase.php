@@ -37,7 +37,7 @@ class MyDatabase{
             return $res;
         }else{
             $error = $this->pdo->errorInfo();
-            echo $error[2];
+            echo "<script>console.log($error[2]);</script>";
             return null;
         }
     }
@@ -306,13 +306,13 @@ class MyDatabase{
         if($this->isUserLogged()){
             $userId = $_SESSION[$this->userSessionKey];
             if($userId == null){
-                echo "SERVER ERROR: Data uživatele nebyla nalezena, a proto byl uživatel odhlášen";
+                echo "<script>console.log('SERVER ERROR: Data uživatele nebyla nalezena, a proto byl uživatel odhlášen');</script>";
                 $this->userLogout();
                 return null;
             }else{
                 $userData = $this->selectFromTable("lrunt_uzivatel", "id_uzivatel=$userId");
                 if(empty($userData)){
-                    echo "ERROR: Data přihlášeného uživatele se nanachází v databázi.";
+                    echo "<script>console.log('ERROR: Data přihlášeného uživatele se nanachází v databázi.');</script>";
                     $this->userLogout();
                     return null;
                 }else{
@@ -341,12 +341,12 @@ class MyDatabase{
         if(isset($_SESSION[$this->reviewId])){
             $reviewId = $_SESSION[$this->reviewId];
             if($reviewId == null){
-                echo "SERVER ERROR: Recenze nenalezena";
+                echo "<script>console.log('SERVER ERROR: Recenze nenalezena');</script>";
                 return null;
             }else{
                 $reviewData = $this->selectFromTable("lrunt_recenze", "id_recenze=$reviewId");
                 if(empty($reviewData)){
-                    echo "ERROR: Data recenze se nanachází v databázi.";
+                    echo "<script>console.log('ERROR: Data recenze se nanachází v databázi.');</script>";
                     return null;
                 }else{
                     return $reviewData[0];
