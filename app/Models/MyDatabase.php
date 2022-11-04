@@ -144,7 +144,7 @@ class MyDatabase{
         return $this->selectFromTable("lrunt_recenze", "'$idUzivatel'=id_uzivatel", "id_recenze");
     }
 
-    public function addNewUser(string $username, string $password, string $email, int $idPravo = 3){
+    public function addNewUser(string $username, string $password, string $email, int $idPravo = 4){
         $insertStatement = "username, heslo, email, id_pravo";
         $insertValues = "'$username', '$password', '$email', '$idPravo'";
         return $this->insertIntoTable("lrunt_uzivatel", $insertStatement, $insertValues);
