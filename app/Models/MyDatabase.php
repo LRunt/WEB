@@ -200,6 +200,12 @@ class MyDatabase{
         return $res[0][0];
     }
 
+    public function getImageName(int $idProduct){
+        $where = "id_produkt='$idProduct'";
+        $res = $this->selectFromTable(TABLE_PRODUKT, $where, "", "photo");
+        return $res[0][0];
+    }
+
     public function deleteUser(int $userId){
         $whereStatement =  "id_uzivatel = $userId";
 

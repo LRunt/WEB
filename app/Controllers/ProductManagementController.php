@@ -32,8 +32,10 @@
                 }else if($_POST['action'] == 'newProduct'){
                     header("Location: http://localhost/WEB/index.php?page=newProduct");
                 }else if($_POST['action'] == "delete" and isset($_POST['id_produkt'])){
+                    $photoName = $this->db->getImageName($_POST['id_produkt']);
                     $res = $this->db->deleteProduct($_POST['id_produkt']);
                     if($res){
+                        $status=unlink($photoName);
                         $tplData['success'] = "OK";
                         $tplData['delete'] = "Produkt s ID:$_POST[id_produkt] byl úspěšně smazán";
                     }else{
