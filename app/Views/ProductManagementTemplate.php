@@ -9,6 +9,24 @@
 
     $tplHeaders->getHTMLHeader($tplData['title']);
 
+    if(isset($tplData['delete']) && isset($tplData['success'])){
+        if($tplData['success'] == "OK"){
+            echo "<div class='alert alert-success d-flex align-items-center' role='alert'>
+                    <i class='fa fa-check' aria-hidden='true'></i>
+                    <div class='ms-2'>
+                       $tplData[delete]
+                    </div>
+                 </div>";
+        } else if($tplData['success'] == "ERROR"){
+            echo "<div class='alert alert-danger d-flex align-items-center' role='alert'>
+                    <i class='fa fa-times' aria-hidden='true'></i>
+                    <div class='ms-2'>
+                       $tplData[delete]
+                    </div>
+               </div>";
+        }
+    }
+
     $res = "";
 
     if($tplData['isLogged']){
