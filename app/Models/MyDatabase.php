@@ -83,6 +83,9 @@ class MyDatabase{
      */
     public function insertIntoTable(string $tableName, string $insertStatename, string $insertValues):bool {
 
+        //XSS control
+        $insertValues = htmlspecialchars($insertValues);
+
         $q = "INSERT INTO $tableName($insertStatename) VALUES ($insertValues)";
 
         $obj = $this->executeQuery($q);
@@ -101,6 +104,9 @@ class MyDatabase{
      * @return bool was update successfully
      */
     public function updateInTable(string $tableName, string $updateStatementWithValues, string $whereStatement):bool {
+
+        //XSS control
+        $updateStatementWithValues = htmlspecialchars($updateStatementWithValues);
 
         $q = "UPDATE $tableName SET $updateStatementWithValues WHERE $whereStatement";
 
