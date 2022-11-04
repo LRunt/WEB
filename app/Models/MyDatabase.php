@@ -206,6 +206,16 @@ class MyDatabase{
         return $res[0][0];
     }
 
+    public function haveProductReview(int $idProduct){
+        $where = "id_produkt='$idProduct'";
+        $res = $this->selectFromTable(TABLE_RECENZE, $where);
+        if($res[0] != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function deleteUser(int $userId){
         $whereStatement =  "id_uzivatel = $userId";
 

@@ -24,6 +24,13 @@
                        $tplData[delete]
                     </div>
                </div>";
+        } else if($tplData['success'] == "WARNING"){
+            echo "<div class='alert alert-warning d-flex align-items-center' role='alert'>
+                    <i class='fa fa-exclamation-triangle' aria-hidden='true'></i>
+                    <div class='ms-2'>
+                       $tplData[delete]
+                    </div>
+               </div>";
         }
     }
 
