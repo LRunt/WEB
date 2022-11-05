@@ -22,6 +22,9 @@
                 </div>    
                 ";
     }
+
+
+
     foreach($tplData['reviews'] as $review){
         $date = strtotime($review['datum']);
         $formattedDate = date('d. m. Y H:i', $date);
