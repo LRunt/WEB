@@ -45,7 +45,7 @@ class NewProductController implements IController{
 
             move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file);
 
-            $res = $this->db->addNewProduct($_POST['name'], $target_file, $_POST['price'], $_POST['quantity']);
+            $res = $this->db->addNewProduct($_POST['name'], $target_file, $_POST['price'], $_POST['quantity'], $_POST['type']);
 
             header('Location: http://localhost/WEB/index.php?page=productManagement');
         }

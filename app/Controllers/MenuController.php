@@ -18,6 +18,8 @@ class MenuController implements IController{
 
         $tplData['title'] = $pageTitle;
 
+        $tplData['menu'] = $this->db->getMenu();
+
         $tplData['isLogged'] = $this->db->isUserLogged();
         if($tplData['isLogged']) {
             $tplData['user'] = $this->db->getLoggedUserData();
@@ -33,8 +35,6 @@ class MenuController implements IController{
                 #echo "WARNING: neznámá akce";
             }
         }
-
-        $tplData['product'] = $this->db->getAllProducts();
 
         $tplData['products'] = $this->db->getAllProducts();
 

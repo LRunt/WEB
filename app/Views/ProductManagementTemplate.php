@@ -61,7 +61,7 @@
             foreach ($tplData['products'] as $product){
                 $res .="<tr>
                     <th scope='row'>$product[nazev]</th>
-                    <td>$product[cena] Kč</td>
+                    <td>$product[cena]Kč</td>
                     <td>$product[mnozstvi]</td>
                     <td>
                       <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#exampleModal$product[id_produkt]'>Smazat</button>

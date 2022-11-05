@@ -150,9 +150,9 @@ class MyDatabase{
         return $this->insertIntoTable("lrunt_uzivatel", $insertStatement, $insertValues);
     }
 
-    public function addNewProduct(string $name, string $photo, int $price, string $quantity){
-        $insertStatement = "nazev, photo, cena, mnozstvi";
-        $insertValues = "'$name', '$photo', '$price', '$quantity'";
+    public function addNewProduct(string $name, string $photo, int $price, string $quantity, int $type){
+        $insertStatement = "nazev, photo, cena, mnozstvi, id_typ";
+        $insertValues = "'$name', '$photo', '$price', '$quantity', $type";
         return $this->insertIntoTable("lrunt_produkt", $insertStatement, $insertValues);
     }
 
@@ -192,6 +192,27 @@ class MyDatabase{
     public function getReview(int $idReview){
         $where = "id_recenze='$idReview'";
         return $this->selectFromTable(TABLE_RECENZE, $where);
+    }
+
+    public function getMenu(){
+        $menu = [];
+        $types = $this->getAllTypesOfProducts();
+        for($i = 0; $i < count($types); $i++){
+            $menu[$i] = $this->getSubMenu($types[$i]);
+        }
+        return $menu;
+    }
+
+    public function getSubMenu($type){
+        $submenu = [];
+        $submenu[1] = $type;
+        $submenu[2] = $this->getProductsByType($type['id_typ']);
+        return $submenu;
+    }
+
+    public function getProductsByType($type){
+        $where = "id_typ='$type'";
+        return $this->selectFromTable(TABLE_PRODUKT, $where);
     }
 
     public function getAverageRating(int $idProduct){
