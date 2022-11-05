@@ -66,7 +66,7 @@
 
             "file_name" => "UserManagementController.php",
             "class_name" => "UserManagementController",
-            "right_weight" => "15"
+            "right_weight" => "9"
         ),
         "productManagement" => array(
             "title" => "Správa produktů",
