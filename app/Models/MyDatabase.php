@@ -137,7 +137,7 @@ class MyDatabase{
     }
 
     function getAllReviews(){
-        return $this->selectFromTable("lrunt_recenze", "", "id_recenze");
+        return $this->selectFromTable("lrunt_recenze", "", "datum DESC");
     }
 
     function getUserReviews(int $idUzivatel){
@@ -164,8 +164,8 @@ class MyDatabase{
 
     public function addNewReview2(int $idUser, int $rating, int $published, string $date, string $text){
         $insertStatement = "id_uzivatel, hodnoceni, zverejneno, datum, popis";
-        $inserValues = "'$idUser', '$rating', '$published', '$date', '$text'";
-        return $this->insertIntoTable("lrunt_recenze", $insertStatement, $inserValues);
+        $insertValues = "'$idUser', '$rating', '$published', '$date', '$text'";
+        return $this->insertIntoTable("lrunt_recenze", $insertStatement, $insertValues);
     }
 
     public function updateUser(int $idUzivatel, string $username, string $password, string $email, int $idPravo){
@@ -216,7 +216,7 @@ class MyDatabase{
     }
 
     public function getAverageRating(int $idProduct){
-        $where = "id_produkt='$idProduct'";
+        $where = "id_produkt='$idProduct' AND zverejneno=1";
         $res = $this->selectFromTable(TABLE_RECENZE, $where, "", "AVG(hodnoceni)");
         return $res[0][0];
     }

@@ -59,7 +59,7 @@
             }
             $res .="    <p>$review[popis]</p>";
             if($tplData['isLogged']){
-                if($tplData['user']['id_pravo'] <= 2){
+                if($tplData['user']['id_pravo'] <= 3){
                     $res .= "<p><b>Stav:</b> Veřejné</p>
                             <form action='' method='POST'>
                                 <input type='hidden' name='id_review' value=$review[id_recenze]>
@@ -89,7 +89,7 @@
             $res .= "  <hr></div>";
         }else{
             if($tplData['isLogged']){
-                if($tplData['user']['id_pravo'] <= 2){
+                if($tplData['user']['id_pravo'] <= 3){
                     $username = "";
                     $productName = "";
                     foreach ($tplData['users'] as $user){

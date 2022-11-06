@@ -73,14 +73,14 @@
 
             "file_name" => "ProductManagementController.php",
             "class_name" => "ProductManagementController",
-            "right_weight" => "4"
+            "right_weight" => "5"
         ),
         "newProduct" => array(
             "title" => "Nový produkt",
 
             "file_name" => "NewProductController.php",
             "class_name" => "NewProductController",
-            "right_weight" => "4"
+            "right_weight" => "5"
         ),
         "newReview" => array(
             "title" => "Nová recenze",

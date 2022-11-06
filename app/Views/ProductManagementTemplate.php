@@ -37,7 +37,7 @@
     $res = "";
 
     if($tplData['isLogged']){
-        if($tplData['weight'] > WEB_PAGES['sprava']['right_weight']){
+        if($tplData['weight'] >= WEB_PAGES['productManagement']['right_weight']){
             $res .= "<h1>Seznam produktů</h1>
                         <div class='row'>
                             <div class='col-md-12 my-2'>
