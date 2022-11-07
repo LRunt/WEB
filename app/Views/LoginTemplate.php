@@ -73,12 +73,16 @@
         }else{
             foreach ($tplData['reviews'] as $r){
                 $product = "Restaurace";
+                $published = "";
+                if(!$r['zverejneno']){
+                    $published = " (čeká na schválení)";
+                }
                 foreach ($tplData['products'] as $p){
                     if($p['id_produkt'] == $r['id_produkt']) $product = $p['nazev'];
                 }
                 $date = strtotime($r['datum']);
                 $formattedDate = date('d. m. Y H:i', $date);
-                $res .= "<b>$product</b><br>
+                $res .= "<b>$product</b> $published<br>
                          $formattedDate<br>
                          <style>
                             .checked {

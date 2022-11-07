@@ -230,7 +230,7 @@ class MyDatabase{
     public function haveProductReview(int $idProduct){
         $where = "id_produkt='$idProduct'";
         $res = $this->selectFromTable(TABLE_RECENZE, $where);
-        if($res[0] != null){
+        if(count($res)){
             return true;
         }else{
             return false;
