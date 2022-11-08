@@ -53,7 +53,7 @@
             if($tplData['mode'] == 2){
                 $product = $tplData['reviewData']['id_produkt'];
                 if($product == null){
-                    $product = 'NULL';
+                    $product = "NULL";
                 }
                 $rating = $tplData['reviewData']['hodnoceni'];
                 $text = $tplData['reviewData']['popis'];

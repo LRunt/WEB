@@ -31,10 +31,18 @@ class ReviewsController implements IController {
                 #echo "OK: Uživatel byl odhlášen.";
             }else if($_POST['action']=='hide'){
                 $review = $this->db->getReview($_POST['id_review']);
-                $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], $review[0]['id_produkt'], $review[0]['hodnoceni'], 0, $review[0]['datum'], $review[0]['popis']);
+                if($review[0]['id_produkt'] != 'NULL'){
+                    $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], $review[0]['id_produkt'], $review[0]['hodnoceni'], 0, $review[0]['datum'], $review[0]['popis']);
+                }else{
+                    $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], -1, $review[0]['hodnoceni'], 0, $review[0]['datum'], $review[0]['popis']);
+                }
             }else if($_POST['action']=='publish'){
                 $review = $this->db->getReview($_POST['id_review']);
-                $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], $review[0]['id_produkt'], $review[0]['hodnoceni'], 1, $review[0]['datum'],$review[0]['popis']);
+                if($review[0]['id_produkt'] != 'NULL'){
+                    $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], $review[0]['id_produkt'], $review[0]['hodnoceni'], 1, $review[0]['datum'],$review[0]['popis']);
+                }else{
+                    $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], -1, $review[0]['hodnoceni'], 1, $review[0]['datum'],$review[0]['popis']);
+                }
             }else if($_POST['action']=='newReview'){
                 $res = $this->db->setEditedReview(-1, 0);
                 header("Location: http://localhost/WEB/index.php?page=newReview");
