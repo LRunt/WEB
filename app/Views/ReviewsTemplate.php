@@ -22,8 +22,14 @@
                 </div>    
                 ";
     }
-
-
+    if($tplData['info']){
+        echo "<div class='alert alert-success d-flex align-items-center' role='alert'>
+                    <i class='fa fa-check' aria-hidden='true'></i>
+                    <div class='ms-2'>
+                       $tplData[info]
+                    </div>
+                 </div>";
+    }
 
     foreach($tplData['reviews'] as $review){
         $date = strtotime($review['datum']);

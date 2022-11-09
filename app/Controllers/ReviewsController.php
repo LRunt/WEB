@@ -17,6 +17,7 @@ class ReviewsController implements IController {
         $tplData = [];
 
         $tplData['title'] = $pageTitle;
+        $tplData['info'] = "";
 
         $tplData['isLogged'] = $this->db->isUserLogged();
         if($tplData['isLogged']){
@@ -31,24 +32,29 @@ class ReviewsController implements IController {
                 #echo "OK: Uživatel byl odhlášen.";
             }else if($_POST['action']=='hide'){
                 $review = $this->db->getReview($_POST['id_review']);
-                if($review[0]['id_produkt'] != 'NULL'){
+
+                if($review[0]['id_produkt'] != ''){
                     $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], $review[0]['id_produkt'], $review[0]['hodnoceni'], 0, $review[0]['datum'], $review[0]['popis']);
                 }else{
                     $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], -1, $review[0]['hodnoceni'], 0, $review[0]['datum'], $review[0]['popis']);
                 }
+                $tplData['info'] = "Recenze byla úspěšně skryta";
             }else if($_POST['action']=='publish'){
                 $review = $this->db->getReview($_POST['id_review']);
-                if($review[0]['id_produkt'] != 'NULL'){
+                if($review[0]['id_produkt'] != ''){
                     $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], $review[0]['id_produkt'], $review[0]['hodnoceni'], 1, $review[0]['datum'],$review[0]['popis']);
                 }else{
                     $this->db->updateReview($review[0]['id_recenze'], $review[0]['id_uzivatel'], -1, $review[0]['hodnoceni'], 1, $review[0]['datum'],$review[0]['popis']);
                 }
+                $tplData['info'] = "Recenze byla úspěšně zveřejněna";
             }else if($_POST['action']=='newReview'){
                 $res = $this->db->setEditedReview(-1, 0);
                 header("Location: http://localhost/WEB/index.php?page=newReview");
             }elseif ($_POST['action']=='delete'){
-                $this->db->deleteReview($_POST['id_review_delete']);
-                //$tplData['info'] = "Recenze byla úspěšně smazána";
+                $res = $this->db->deleteReview($_POST['id_review_delete']);
+                if($res){
+                    $tplData['info'] = "Recenze byla úspěšně smazána";
+                }
             }
         }
 

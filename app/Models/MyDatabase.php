@@ -310,6 +310,7 @@ class MyDatabase{
         $stmt = $this->pdo->prepare($q);
 
         $stmt->bindValue(":idReview", $idReview);
+        $stmt->bindValue(":idProduct", $idProduct);
         $stmt->bindValue(":idUser", $idUser);
         $stmt->bindValue(":rating", $rating);
         $stmt->bindValue(":published", $published);
@@ -421,21 +422,45 @@ class MyDatabase{
     }
 
     public function deleteUser(int $userId){
-        $whereStatement =  "id_uzivatel = $userId";
+        $userId = htmlspecialchars($userId);
 
-        return $this->deleteFromTable(TABLE_UZIVATEL, $whereStatement);
+        $q = "DELETE FROM lrunt_uzivatel WHERE id_uzivatel=:userId";
+        $stmt = $this->pdo->prepare($q);
+
+        $stmt->bindValue(":userId", $userId);
+
+        if($stmt->execute()) {
+            return true;
+        }
+        return false;
     }
 
     public function deleteProduct(int $productId){
-        $whereStatement = "id_produkt = $productId";
+        $productId = htmlspecialchars($productId);
 
-        return $this->deleteFromTable("lrunt_produkt", $whereStatement);
+        $q = "DELETE FROM lrunt_produkt WHERE id_produkt=:productId";
+        $stmt = $this->pdo->prepare($q);
+
+        $stmt->bindValue(":productId", $productId);
+
+        if($stmt->execute()) {
+            return true;
+        }
+        return false;
     }
 
     public function deleteReview(int $reviewId){
-        $whereStatement = "id_recenze = $reviewId";
+        $reviewId = htmlspecialchars($reviewId);
 
-        return $this->deleteFromTable("lrunt_recenze", $whereStatement);
+        $q = "DELETE FROM lrunt_recenze WHERE id_recenze=:reviewId";
+        $stmt = $this->pdo->prepare($q);
+
+        $stmt->bindValue(":reviewId", $reviewId);
+
+        if($stmt->execute()) {
+            return true;
+        }
+        return false;
     }
 
     public function userExist(string $username){
