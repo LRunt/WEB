@@ -51,7 +51,7 @@ class UserManagementController implements IController {
             if($tplData['user'][0] == $_POST['id_user']){
                 $tplData['success'] = "WARNING";
                 $tplData['delete'] = "Uživatel nesmí měnit právo sám sobě.";
-            }else if($tplData['user'][1] == 2 && ($this->db->getUserRole($_POST['id_user']) == "Admin" || $this->db->getUserRole($_POST['id_user']) == "Super Admin" || $_POST["pravo"] == "1" || $_POST["pravo"] == "2")) {
+            }else if($tplData['user'][1] == 2 && ($this->db->getUserRights($_POST['id_user']) == "Admin" || $this->db->getUserRights($_POST['id_user']) == "Super Admin" || $_POST["pravo"] == "1" || $_POST["pravo"] == "2")) {
                 $tplData['success'] = "WARNING";
                 $tplData['delete'] = "Admin role může dávat, nebo rušit jenom Super Admin.";
             } else{

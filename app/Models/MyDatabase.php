@@ -317,6 +317,15 @@ class MyDatabase{
         }
     }
 
+    public function getUserRights(int $userId){
+        $where = "id_uzivatel=$userId";
+        $role = $this->selectFromTable("lrunt_uzivatel", $where);
+
+        if(count($role)){
+            return $this->getUserRole($role[0]['id_pravo']);
+        }
+    }
+
     /**
      * Logout of user
      */
