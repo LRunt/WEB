@@ -24,9 +24,7 @@ class UserManagementController implements IController {
             $tplData['weight'] = $this->db->getWeightOfRight($tplData['user']['id_pravo']);
         }
 
-        if(isset($_POST['action']) and $_POST['action'] == "delete"
-            and isset($_POST['id_user'])
-        ){
+        if(isset($_POST['action']) and $_POST['action'] == "delete" and isset($_POST['id_user'])){
             if($tplData['user'][0] == $_POST['id_user']) {
                 $tplData['success'] = "WARNING";
                 $tplData['delete'] = "Uživatel nesmí smazat sám sebe";

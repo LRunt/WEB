@@ -43,6 +43,7 @@ class MyDatabase{
     }
 
     public function selectFromTable(string $tableName, string $whereStatement = "", string $orderStatement = "", string $column = "*"):array {
+
         $q = "SELECT " . $column . " FROM ". $tableName
             .(($whereStatement == "") ? "" : " WHERE $whereStatement")
             .(($orderStatement == "") ? "" : " ORDER BY $orderStatement");
@@ -120,78 +121,229 @@ class MyDatabase{
     }
 
     function getAllUsers(){
-        $users = $this->selectFromTable("lrunt_uzivatel", "", "id_uzivatel");
-        return $users;
+        $q = "SELECT * FROM lrunt_uzivatel ORDER BY id_uzivatel;";
+        $res = $this->pdo->query($q);
+        if($res){
+            return $res->fetchAll();
+        }
+        return null;
     }
 
     function getAllRights(){
-        return $this->selectFromTable("lrunt_pravo", "", "id_pravo");
+        $q = "SELECT * FROM lrunt_pravo ORDER BY id_pravo;";
+        $res = $this->pdo->query($q);
+        if($res){
+            return $res->fetchAll();
+        }
+        return null;
     }
 
     function getAllProducts(){
-        return $this->selectFromTable("lrunt_produkt", "", "id_produkt");
+        $q = "SELECT * FROM lrunt_produkt ORDER BY id_produkt;";
+        $res = $this->pdo->query($q);
+        if($res){
+            return $res->fetchAll();
+        }
+        return null;
     }
 
     function getAllTypesOfProducts(){
-        return $this->selectFromTable("lrunt_typ_produktu", "", "id_typ");
+        $q = "SELECT * FROM lrunt_typ_produktu ORDER BY id_typ;";
+        $res = $this->pdo->query($q);
+        if($res){
+            return $res->fetchAll();
+        }
+        return null;
     }
 
     function getAllReviews(){
-        return $this->selectFromTable("lrunt_recenze", "", "datum DESC");
+        $q = "SELECT * FROM lrunt_recenze ORDER BY datum DESC;";
+        $res = $this->pdo->query($q);
+        if($res){
+            return $res->fetchAll();
+        }
+        return null;
     }
 
-    function getUserReviews(int $idUzivatel){
-        return $this->selectFromTable("lrunt_recenze", "'$idUzivatel'=id_uzivatel", "id_recenze");
+    function getUserReviews(int $userId){
+       $userId = htmlspecialchars($userId);
+
+        $q = "SELECT * FROM lrunt_recenze WHERE id_uzivatel=:userId ORDER BY datum DESC;";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->bindValue(":userId", $userId);
+        if($stmt->execute()){
+            return $stmt->fetchAll();
+        }
+        return null;
     }
 
     public function addNewUser(string $username, string $password, string $email, int $idPravo = 4){
-        $insertStatement = "username, heslo, email, id_pravo";
-        $insertValues = "'$username', '$password', '$email', '$idPravo'";
-        return $this->insertIntoTable("lrunt_uzivatel", $insertStatement, $insertValues);
+        $username = htmlspecialchars($username);
+        $password = htmlspecialchars($password);
+        $email = htmlspecialchars($email);
+        $idPravo = htmlspecialchars($idPravo);
+
+        $q= "INSERT INTO lrunt_uzivatel(username, heslo, email, id_pravo) VALUES (:username, :password, :email, :idPravo)";
+
+        $stmt = $this->pdo->prepare($q);
+
+        $stmt->bindValue(":username", $username);
+        $stmt->bindValue(":password", $password);
+        $stmt->bindValue(":email", $email);
+        $stmt->bindValue(":idPravo", $idPravo);
+
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
     }
 
     public function addNewProduct(string $name, string $photo, int $price, string $quantity, int $type){
-        $insertStatement = "nazev, photo, cena, mnozstvi, id_typ";
-        $insertValues = "'$name', '$photo', '$price', '$quantity', $type";
-        return $this->insertIntoTable("lrunt_produkt", $insertStatement, $insertValues);
+        $name = htmlspecialchars($name);
+        $photo = htmlspecialchars($photo);
+        $price = htmlspecialchars($price);
+        $quantity = htmlspecialchars($quantity);
+        $type = htmlspecialchars($type);
+
+        $q = "INSERT INTO lrunt_produkt(nazev, photo, cena, mnozstvi, id_typ) VALUES (:name, :photo, :price, :quantity, :type)";
+
+        $stmt = $this->pdo->prepare($q);
+
+        $stmt->bindValue(":name", $name);
+        $stmt->bindValue(":photo", $photo);
+        $stmt->bindValue(":price", $price);
+        $stmt->bindValue(":quantity", $quantity);
+        $stmt->bindValue(":type", $type);
+
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
     }
 
     public function addNewReview(int $idUser, int $idProduct, int $rating, int $published, string $date, string $text){
-        $insertStatement = "id_uzivatel, id_produkt, hodnoceni, zverejneno, datum, popis";
-        $inserValues = "'$idUser', '$idProduct', '$rating', '$published', '$date', '$text'";
-        return $this->insertIntoTable("lrunt_recenze", $insertStatement, $inserValues);
+        $idUser = htmlspecialchars($idUser);
+        $idProduct = htmlspecialchars($idProduct);
+        $rating = htmlspecialchars($rating);
+        $published = htmlspecialchars($published);
+        $date = htmlspecialchars($date);
+        $text = htmlspecialchars($text);
+
+        $q = "INSERT INTO lrunt_recenze(id_uzivatel, id_produkt, hodnoceni, zverejneno, datum, popis) VALUES (:idUser, :idProduct, :rating, :published, :date, :text)";
+
+        $stmt = $this->pdo->prepare($q);
+
+        $stmt->bindValue(":idUser", $idUser);
+        $stmt->bindValue(":idProduct", $idProduct);
+        $stmt->bindValue(":rating", $rating);
+        $stmt->bindValue(":published", $published);
+        $stmt->bindValue(":date", $date);
+        $stmt->bindValue(":text", $text);
+
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
     }
 
     public function addNewReview2(int $idUser, int $rating, int $published, string $date, string $text){
-        $insertStatement = "id_uzivatel, hodnoceni, zverejneno, datum, popis";
-        $insertValues = "'$idUser', '$rating', '$published', '$date', '$text'";
-        return $this->insertIntoTable("lrunt_recenze", $insertStatement, $insertValues);
+        $idUser = htmlspecialchars($idUser);
+        $rating = htmlspecialchars($rating);
+        $published = htmlspecialchars($published);
+        $date = htmlspecialchars($date);
+        $text = htmlspecialchars($text);
+
+        $q = "INSERT INTO lrunt_recenze(id_uzivatel, hodnoceni, zverejneno, datum, popis) VALUES (:idUser, :rating, :published, :date, :text)";
+
+        $stmt = $this->pdo->prepare($q);
+
+        $stmt->bindValue(":idUser", $idUser);
+        $stmt->bindValue(":rating", $rating);
+        $stmt->bindValue(":published", $published);
+        $stmt->bindValue(":date", $date);
+        $stmt->bindValue(":text", $text);
+
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
     }
 
     public function updateUser(int $idUzivatel, string $username, string $password, string $email, int $idPravo){
-        $updateStatementWithValues = "username='$username', heslo='$password', email='$email', id_pravo='$idPravo'";
-        $whereStatement = "id_uzivatel=$idUzivatel";
-        return $this->updateInTable(TABLE_UZIVATEL, $updateStatementWithValues, $whereStatement);
+        $idUzivatel = htmlspecialchars($idUzivatel);
+        $username = htmlspecialchars($username);
+        $password = htmlspecialchars($password);
+        $email = htmlspecialchars($email);
+        $idPravo = htmlspecialchars($idPravo);
+
+        $q = "UPDATE lrunt_uzivatel SET username=:username, heslo=:password, email=:email, id_pravo=:idPravo WHERE id_uzivatel=:idUzivatel";
+
+        $stmt = $this->pdo->prepare($q);
+
+        $stmt->bindValue(":idUzivatel", $idUzivatel);
+        $stmt->bindValue(":password", $password);
+        $stmt->bindValue(":username", $username);
+        $stmt->bindValue(":email", $email);
+        $stmt->bindValue(":idPravo", $idPravo);
+
+        if($stmt->execute()) {
+            return true;
+        }
+        return false;
     }
 
     public function updateReview(int $idReview, int $idUser, int $idProduct, int $rating, int $published, string $date, string $description){
+        $idReview = htmlspecialchars($idReview);
+        $idUser = htmlspecialchars($idUser);
+        $idProduct = htmlspecialchars($idProduct);
+        $rating = htmlspecialchars($rating);
+        $published = htmlspecialchars($published);
+        $date = htmlspecialchars($date);
+        $description = htmlspecialchars($description);
+
         if($idProduct != -1){
-            $updateStatementWithValues = "id_uzivatel='$idUser', id_produkt='$idProduct', hodnoceni='$rating', zverejneno='$published', datum='$date',popis='$description'";
+            $q = "UPDATE lrunt_recenze SET id_uzivatel=:idUser, id_produkt=:idProduct, hodnoceni=:rating, zverejneno=:published, datum=:date, popis=:description WHERE id_recenze=:idReview";
         } else{
-            $updateStatementWithValues = "id_uzivatel='$idUser', id_produkt=NULL, hodnoceni='$rating', zverejneno='$published', datum='$date',popis='$description'";
+            $q = "UPDATE lrunt_recenze SET id_uzivatel=:idUser, id_produkt=NULL, hodnoceni=:rating, zverejneno=:published, datum=:date, popis=:description WHERE id_recenze=:idReview";
         }
-        $whereStatement = "id_recenze=$idReview";
-        return $this->updateInTable(TABLE_RECENZE, $updateStatementWithValues, $whereStatement);
+
+        $stmt = $this->pdo->prepare($q);
+
+        $stmt->bindValue(":idReview", $idReview);
+        $stmt->bindValue(":idUser", $idUser);
+        $stmt->bindValue(":rating", $rating);
+        $stmt->bindValue(":published", $published);
+        $stmt->bindValue(":date", $date);
+        $stmt->bindValue(":description", $description);
+
+        if($stmt->execute()) {
+            return true;
+        }
+        return false;
     }
 
-    public function getUser(int $idUzivatel){
-        $where = "id_uzivatel='$idUzivatel'";
-        return $this->selectFromTable(TABLE_UZIVATEL, $where);;
+    public function getUser(int $userId){
+        $userId = htmlspecialchars($userId);
+
+        $q = "SELECT * FROM lrunt_uzivatel WHERE id_uzivatel=:userId";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->bindValue(":userId", $userId);
+        if($stmt->execute()){
+            return $stmt->fetchAll();
+        }
+        return null;
     }
 
     public function getReview(int $idReview){
-        $where = "id_recenze='$idReview'";
-        return $this->selectFromTable(TABLE_RECENZE, $where);
+        $idReview = htmlspecialchars($idReview);
+
+        $q = "SELECT * FROM lrunt_recenze WHERE id_recenze=:idReview";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->bindValue(":idReview", $idReview);
+        if($stmt->execute()){
+            return $stmt->fetchAll();
+        }
+        return null;
     }
 
     public function getMenu(){
@@ -211,20 +363,41 @@ class MyDatabase{
     }
 
     public function getProductsByType($type){
-        $where = "id_typ='$type'";
-        return $this->selectFromTable(TABLE_PRODUKT, $where);
+        $type = htmlspecialchars($type);
+
+        $q = "SELECT * FROM lrunt_produkt WHERE id_typ=:type";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->bindValue(":type", $type);
+        if($stmt->execute()){
+            return $stmt->fetchAll();
+        }
+        return null;
     }
 
     public function getAverageRating(int $idProduct){
-        $where = "id_produkt='$idProduct' AND zverejneno=1";
-        $res = $this->selectFromTable(TABLE_RECENZE, $where, "", "AVG(hodnoceni)");
-        return $res[0][0];
+        $idProduct = htmlspecialchars($idProduct);
+
+        $q = "SELECT AVG(hodnoceni) FROM lrunt_recenze WHERE id_produkt=:idProdukt AND zverejneno=1";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->bindValue(":idProdukt", $idProduct);
+        if($stmt->execute()){
+            $array = $stmt->fetchAll();
+            return $array[0][0];
+        }
+        return null;
     }
 
     public function getImageName(int $idProduct){
-        $where = "id_produkt='$idProduct'";
-        $res = $this->selectFromTable(TABLE_PRODUKT, $where, "", "photo");
-        return $res[0][0];
+        $idProduct = htmlspecialchars($idProduct);
+
+        $q = "SELECT photo FROM lrunt_produkt WHERE id_produkt=:idProdukt";
+        $stmt = $this->pdo->prepare($q);
+        $stmt->bindValue(":idProdukt", $idProduct);
+        if($stmt->execute()){
+            $array = $stmt->fetchAll();
+            return $array[0][0];
+        }
+        return null;
     }
 
     public function haveProductReview(int $idProduct){
